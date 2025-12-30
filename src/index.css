@@ -4,66 +4,66 @@
 
 @layer base {
   :root {
-    /* Modern Classic - Warm Stone & Brushed Metal palette */
-    --background: 40 20% 97%;
-    --foreground: 30 15% 20%;
+    /* 暖土 - Warm cream/off-white background */
+    --background: 40 35% 96%;
+    --foreground: 25 15% 18%;
     
-    --card: 40 15% 98%;
-    --card-foreground: 30 15% 20%;
+    /* Card - slightly warmer than background */
+    --card: 38 30% 98%;
+    --card-foreground: 25 15% 18%;
     
-    --popover: 40 15% 98%;
-    --popover-foreground: 30 15% 20%;
+    --popover: 38 30% 98%;
+    --popover-foreground: 25 15% 18%;
     
-    /* Refined Copper/Bronze accent */
-    --primary: 25 45% 45%;
-    --primary-foreground: 40 20% 98%;
+    /* 火 - Elegant burgundy/wine red accent */
+    --primary: 345 45% 35%;
+    --primary-foreground: 40 30% 98%;
     
-    /* Sage green - elegant secondary */
-    --secondary: 150 20% 40%;
-    --secondary-foreground: 40 20% 98%;
+    /* 金水 - Deep charcoal with subtle warmth */
+    --secondary: 30 8% 22%;
+    --secondary-foreground: 40 30% 98%;
     
     /* Warm stone muted tones */
-    --muted: 35 15% 92%;
-    --muted-foreground: 30 10% 45%;
+    --muted: 35 20% 90%;
+    --muted-foreground: 25 12% 45%;
     
-    /* Slate blue accent */
-    --accent: 215 25% 45%;
-    --accent-foreground: 40 20% 98%;
+    /* Slate accent for variety */
+    --accent: 30 8% 22%;
+    --accent-foreground: 40 30% 98%;
     
-    --destructive: 0 45% 50%;
-    --destructive-foreground: 40 20% 98%;
+    --destructive: 0 50% 45%;
+    --destructive-foreground: 40 30% 98%;
     
-    /* Stone/brushed metal borders */
-    --border: 35 12% 85%;
-    --input: 35 12% 88%;
-    --ring: 25 45% 45%;
+    /* Stone/granite-inspired borders */
+    --border: 35 15% 82%;
+    --input: 35 15% 88%;
+    --ring: 345 45% 35%;
     
     /* Micro corner radius (4-8px) */
     --radius: 6px;
     
-    /* Chart colors - muted luxury palette */
-    --chart-1: 25 45% 45%;
-    --chart-2: 150 20% 40%;
-    --chart-3: 340 30% 50%;
-    --chart-4: 215 25% 45%;
-    --chart-5: 280 25% 45%;
+    /* Chart colors - earth & fire palette */
+    --chart-1: 345 45% 35%;
+    --chart-2: 30 8% 22%;
+    --chart-3: 25 40% 50%;
+    --chart-4: 150 20% 40%;
+    --chart-5: 215 25% 45%;
     
-    /* Sidebar */
-    --sidebar-background: 40 15% 96%;
-    --sidebar-foreground: 30 15% 20%;
-    --sidebar-primary: 25 45% 45%;
-    --sidebar-primary-foreground: 40 20% 98%;
-    --sidebar-accent: 35 15% 92%;
-    --sidebar-accent-foreground: 30 15% 20%;
-    --sidebar-border: 35 12% 85%;
-    --sidebar-ring: 25 45% 45%;
+    /* Sidebar - deep charcoal */
+    --sidebar-background: 30 8% 22%;
+    --sidebar-foreground: 40 30% 95%;
+    --sidebar-primary: 345 45% 45%;
+    --sidebar-primary-foreground: 40 30% 98%;
+    --sidebar-accent: 30 10% 28%;
+    --sidebar-accent-foreground: 40 30% 95%;
+    --sidebar-border: 30 8% 30%;
+    --sidebar-ring: 345 45% 35%;
 
-    /* Custom luxury accents */
-    --stone-warm: 35 20% 92%;
-    --bronze: 25 45% 45%;
-    --slate: 215 25% 45%;
-    --sage: 150 20% 40%;
-    --charcoal: 30 10% 25%;
+    /* Custom design tokens */
+    --warm-earth: 40 35% 96%;
+    --charcoal: 30 8% 22%;
+    --burgundy: 345 45% 35%;
+    --granite: 35 10% 70%;
   }
 }
 
@@ -88,26 +88,24 @@
   /* Matte stone card effect */
   .matte-card {
     @apply bg-card border border-border;
-    box-shadow: 0 1px 3px 0 hsl(30 10% 20% / 0.04), 
+    box-shadow: 0 1px 3px 0 hsl(30 10% 20% / 0.05), 
                 0 1px 2px -1px hsl(30 10% 20% / 0.04);
   }
   
-  /* Brushed metal effect */
-  .brushed-metal {
+  /* Deep charcoal header bar */
+  .charcoal-bar {
     background: linear-gradient(
-      135deg,
-      hsl(35 15% 94%) 0%,
-      hsl(35 12% 92%) 50%,
-      hsl(35 15% 94%) 100%
+      180deg,
+      hsl(30 8% 24%) 0%,
+      hsl(30 8% 20%) 100%
     );
-    border: 1px solid hsl(35 12% 88%);
   }
   
-  /* Leather-like subtle texture */
-  .leather-texture {
-    background-color: hsl(30 15% 25%);
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    background-blend-mode: soft-light;
+  /* Granite texture effect */
+  .granite-texture {
+    background-color: hsl(35 10% 70%);
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    background-blend-mode: overlay;
   }
 
   /* Minimal hover lift - subtle and refined */
@@ -117,7 +115,7 @@
 
   .hover-lift:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px -2px hsl(30 10% 20% / 0.08);
+    box-shadow: 0 4px 12px -2px hsl(30 10% 20% / 0.1);
   }
 }
 

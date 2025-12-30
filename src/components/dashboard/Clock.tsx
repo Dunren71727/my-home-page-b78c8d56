@@ -28,9 +28,8 @@ export function Clock() {
   };
 
   return (
-    <div className="flex items-center gap-2 text-foreground">
+    <div className="flex items-center gap-2 text-secondary-foreground">
       <span className="text-sm font-medium tabular-nums">{formatTime(time)}</span>
-      <span className="text-xs text-muted-foreground hidden sm:inline">{formatDate(time).split('年')[1]}</span>
     </div>
   );
 }

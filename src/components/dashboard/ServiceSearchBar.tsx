@@ -32,8 +32,8 @@ export function ServiceSearchBar({ services, onServiceClick }: ServiceSearchBarP
   return (
     <div className="relative w-full max-w-md">
       <div className="relative">
-        <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-background/80 backdrop-blur border border-border/50 shadow-sm">
-          <Search className="w-4 h-4 text-muted-foreground" />
+        <div className="flex items-center gap-2 px-4 py-2 rounded-md bg-secondary-foreground/10 border border-secondary-foreground/20">
+          <Search className="w-4 h-4 text-secondary-foreground/60" />
           <Input
             type="text"
             placeholder="搜尋服務..."
@@ -41,12 +41,12 @@ export function ServiceSearchBar({ services, onServiceClick }: ServiceSearchBarP
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-            className="flex-1 border-0 bg-transparent h-8 text-sm placeholder:text-muted-foreground/50 focus-visible:ring-0 focus-visible:ring-offset-0 p-0"
+            className="flex-1 border-0 bg-transparent h-7 text-sm text-secondary-foreground placeholder:text-secondary-foreground/50 focus-visible:ring-0 focus-visible:ring-offset-0 p-0"
           />
           {query && (
             <button 
               onClick={() => setQuery('')}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="text-secondary-foreground/60 hover:text-secondary-foreground transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -55,14 +55,14 @@ export function ServiceSearchBar({ services, onServiceClick }: ServiceSearchBarP
       </div>
 
       {showResults && (
-        <div className="absolute top-full left-0 right-0 mt-2 rounded-xl bg-background/95 backdrop-blur border border-border/50 shadow-lg overflow-hidden z-50">
+        <div className="absolute top-full left-0 right-0 mt-2 rounded-md bg-card border border-border shadow-lg overflow-hidden z-50">
           {filteredServices.map((service) => (
             <button
               key={service.id}
               onClick={() => handleServiceClick(service)}
               className="w-full px-4 py-3 text-left hover:bg-muted/50 transition-colors flex flex-col gap-0.5"
             >
-              <span className="text-sm font-medium">{service.name}</span>
+              <span className="text-sm font-medium text-foreground">{service.name}</span>
               {service.description && (
                 <span className="text-xs text-muted-foreground truncate">
                   {service.description}
@@ -74,7 +74,7 @@ export function ServiceSearchBar({ services, onServiceClick }: ServiceSearchBarP
       )}
 
       {isFocused && query.trim() && filteredServices.length === 0 && (
-        <div className="absolute top-full left-0 right-0 mt-2 rounded-xl bg-background/95 backdrop-blur border border-border/50 shadow-lg p-4 z-50">
+        <div className="absolute top-full left-0 right-0 mt-2 rounded-md bg-card border border-border shadow-lg p-4 z-50">
           <p className="text-sm text-muted-foreground text-center">找不到相關服務</p>
         </div>
       )}

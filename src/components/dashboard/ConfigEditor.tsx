@@ -131,7 +131,7 @@ export function ConfigEditor({
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" className="glass-card rounded-xl hover-lift">
+        <Button variant="ghost" size="icon" className="rounded-md bg-secondary-foreground/10 border border-secondary-foreground/20 hover:bg-secondary-foreground/20 text-secondary-foreground">
           <Settings className="w-5 h-5" />
         </Button>
       </SheetTrigger>
