@@ -23,17 +23,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Background - light theme */}
-      <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-50" />
-      <div className="fixed inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23000%22 fill-opacity=%220.02%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50" />
+      {/* Vibrant gradient background */}
+      <div className="fixed inset-0 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50" />
+      <div className="fixed inset-0 bg-[url('data:image/svg+xml,%3Csvg width=%2260%22 height=%2260%22 viewBox=%220 0 60 60%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg fill=%22none%22 fill-rule=%22evenodd%22%3E%3Cg fill=%22%23f97316%22 fill-opacity=%220.03%22%3E%3Cpath d=%22M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50" />
 
       {/* Content */}
       <div className="relative z-10 min-h-screen p-4 md:p-6">
         {/* Header */}
         <header className="flex justify-between items-center mb-6 gap-4">
           <div className="flex items-center gap-4">
-            <div className="rounded-xl px-4 py-2 bg-background/80 backdrop-blur border border-border/50 shadow-sm">
-              <span className="text-lg font-semibold text-foreground">
+            <div className="rounded-xl px-5 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 shadow-lg shadow-orange-200">
+              <span className="text-lg font-bold text-white">
                 敦仁醫院 服務入口
               </span>
             </div>
@@ -41,7 +41,9 @@ const Index = () => {
           
           <div className="flex items-center gap-3 flex-1 justify-end">
             <ServiceSearchBar services={config.services} />
-            <Clock />
+            <div className="px-3 py-1.5 rounded-lg bg-white/80 border border-orange-200 shadow-sm">
+              <Clock />
+            </div>
             <ConfigEditor
               config={config}
               onAddService={addService}
@@ -70,7 +72,7 @@ const Index = () => {
         </main>
 
         {/* Footer */}
-        <footer className="mt-8 text-center text-sm text-muted-foreground/60">
+        <footer className="mt-8 text-center text-sm text-orange-400">
           <p>拖曳卡片可重新排序 | 按右上角齒輪自訂設定</p>
         </footer>
       </div>

@@ -28,7 +28,7 @@ export function Clock() {
   };
 
   return (
-    <div className="text-sm text-muted-foreground font-medium">
+    <div className="text-sm text-orange-600 font-semibold">
       {formatTime(time)}
     </div>
   );

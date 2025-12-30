@@ -24,25 +24,21 @@ export function ServiceTabs({ categories, subcategories, services, onReorderServ
   }
 
   return (
-    <div className="glass-card rounded-2xl overflow-hidden">
+    <div className="bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl border border-orange-100">
       <Tabs defaultValue={sortedCategories[0]?.id} className="w-full">
-        <div className="border-b border-border/30 bg-background/30">
+        <div className="border-b border-orange-100 bg-gradient-to-r from-orange-50 to-amber-50">
           <TabsList className="w-full justify-start h-auto p-0 bg-transparent rounded-none">
             {sortedCategories.map((category) => (
               <TabsTrigger
                 key={category.id}
                 value={category.id}
-                className="relative px-6 py-4 rounded-none border-b-2 border-transparent data-[state=active]:border-current data-[state=active]:bg-transparent transition-all"
+                className="relative px-6 py-4 rounded-none border-b-3 border-transparent data-[state=active]:border-current data-[state=active]:bg-white/50 transition-all font-semibold"
                 style={{ 
-                  '--tw-border-opacity': '1',
+                  color: category.color,
+                  borderBottomWidth: '3px',
                 } as React.CSSProperties}
               >
-                <span 
-                  className="font-medium transition-colors data-[state=active]:font-semibold"
-                  style={{ color: category.color }}
-                >
-                  {category.name}
-                </span>
+                {category.name}
               </TabsTrigger>
             ))}
           </TabsList>
@@ -52,7 +48,7 @@ export function ServiceTabs({ categories, subcategories, services, onReorderServ
           <TabsContent 
             key={category.id} 
             value={category.id}
-            className="mt-0 focus-visible:outline-none"
+            className="mt-0 focus-visible:outline-none bg-gradient-to-b from-white/50 to-transparent"
           >
             <CategoryTabContent
               category={category}
