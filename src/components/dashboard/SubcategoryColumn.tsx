@@ -57,13 +57,9 @@ export function SubcategoryColumn({ subcategory, services, onReorderServices }: 
   if (sortedServices.length === 0) return null;
 
   return (
-    <div 
-      className="rounded-md p-4 min-w-[280px] h-fit bg-muted/40 border border-border"
-    >
-      <h3 
-        className="font-medium text-sm mb-4 pb-2 border-b border-border/60 tracking-wide"
-        style={{ color: subcategory.color }}
-      >
+    <div className="rounded-md p-4 min-w-[280px] h-fit bg-muted/25 border border-border">
+      {/* 子分類標題 - 酒紅色強調 */}
+      <h3 className="font-semibold text-sm mb-4 pb-2.5 border-b border-border tracking-wide text-primary">
         {subcategory.name}
       </h3>
       
@@ -73,12 +69,11 @@ export function SubcategoryColumn({ subcategory, services, onReorderServices }: 
         onDragEnd={handleDragEnd}
       >
         <SortableContext items={sortedServices.map(s => s.id)} strategy={verticalListSortingStrategy}>
-          <div className="space-y-2">
+          <div className="space-y-2.5">
             {sortedServices.map((service) => (
               <DraggableServiceCard 
                 key={service.id} 
                 service={service} 
-                color={subcategory.color}
               />
             ))}
           </div>

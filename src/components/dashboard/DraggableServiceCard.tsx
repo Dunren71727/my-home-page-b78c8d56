@@ -10,7 +10,6 @@ import { Service } from '@/types/dashboard';
 
 interface DraggableServiceCardProps {
   service: Service;
-  color?: string;
   isDragging?: boolean;
 }
 
@@ -48,7 +47,7 @@ const iconMap: Record<string, LucideIcon> = {
   'heart-pulse': HeartPulse,
 };
 
-export function DraggableServiceCard({ service, color = 'hsl(25, 45%, 45%)' }: DraggableServiceCardProps) {
+export function DraggableServiceCard({ service }: DraggableServiceCardProps) {
   const {
     attributes,
     listeners,
@@ -61,7 +60,6 @@ export function DraggableServiceCard({ service, color = 'hsl(25, 45%, 45%)' }: D
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    '--card-accent': color,
   } as React.CSSProperties;
 
   const IconComponent = iconMap[service.icon] || Globe;
@@ -70,13 +68,17 @@ export function DraggableServiceCard({ service, color = 'hsl(25, 45%, 45%)' }: D
     <div
       ref={setNodeRef}
       style={style}
-      className={`group relative rounded-md p-3 transition-all duration-200 cursor-pointer
-        ${isDragging ? 'opacity-50 z-50 shadow-lg scale-[1.02]' : 'hover:shadow-md hover:-translate-y-0.5'}
-        bg-card border border-border hover:border-[var(--card-accent)]/40
+      className={`group relative rounded-md p-3.5 transition-all duration-200 cursor-pointer
+        ${isDragging 
+          ? 'opacity-60 z-50 shadow-lg scale-[1.02]' 
+          : 'hover:shadow-md hover:-translate-y-0.5'
+        }
+        bg-card border border-border hover:border-primary/30
       `}
     >
+      {/* 拖曳手柄 */}
       <div 
-        className="absolute left-1.5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-50 cursor-grab active:cursor-grabbing transition-opacity"
+        className="absolute left-1.5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-40 cursor-grab active:cursor-grabbing transition-opacity"
         {...attributes}
         {...listeners}
       >
@@ -87,21 +89,21 @@ export function DraggableServiceCard({ service, color = 'hsl(25, 45%, 45%)' }: D
         href={service.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="flex items-start gap-3 pl-4"
+        className="flex items-start gap-3.5 pl-4"
         onClick={(e) => e.stopPropagation()}
       >
-        <div 
-          className="p-2 rounded-md transition-colors shrink-0 bg-muted/60"
-        >
-          <IconComponent className="w-5 h-5" style={{ color }} />
+        {/* 圖標 - 青銅金屬色 */}
+        <div className="p-2 rounded-md shrink-0 bg-accent/10">
+          <IconComponent className="w-5 h-5 text-accent" />
         </div>
+        
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <h3 className="font-medium text-sm text-foreground">{service.name}</h3>
-            <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-50 transition-opacity text-muted-foreground flex-shrink-0" />
+            <ExternalLink className="w-3.5 h-3.5 opacity-0 group-hover:opacity-40 transition-opacity text-muted-foreground flex-shrink-0" />
           </div>
           {service.description && (
-            <p className="text-xs text-muted-foreground truncate mt-0.5">
+            <p className="text-xs text-muted-foreground truncate mt-1">
               {service.description}
             </p>
           )}
