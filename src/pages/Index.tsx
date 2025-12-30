@@ -17,6 +17,7 @@ const Index = () => {
     addCategory,
     updateCategory,
     deleteCategory,
+    reorderCategories,
     updateSettings,
     resetConfig,
   } = useDashboardConfig();
@@ -66,6 +67,7 @@ const Index = () => {
                   onAddCategory={addCategory}
                   onUpdateCategory={updateCategory}
                   onDeleteCategory={deleteCategory}
+                  onReorderCategories={reorderCategories}
                   onUpdateSettings={updateSettings}
                   onReset={resetConfig}
                 />

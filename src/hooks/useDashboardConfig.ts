@@ -185,6 +185,13 @@ export function useDashboardConfig() {
     });
   };
 
+  const reorderCategories = (categories: Category[]) => {
+    setConfig(prev => ({
+      ...prev,
+      categories,
+    }));
+  };
+
   const updateSettings = (updates: Partial<DashboardConfig>) => {
     setConfig(prev => ({ ...prev, ...updates }));
   };
@@ -205,6 +212,7 @@ export function useDashboardConfig() {
     addCategory,
     updateCategory,
     deleteCategory,
+    reorderCategories,
     updateSettings,
     resetConfig,
   };
