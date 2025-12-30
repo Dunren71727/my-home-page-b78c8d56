@@ -58,13 +58,12 @@ export function SubcategoryColumn({ subcategory, services, onReorderServices }: 
 
   return (
     <div 
-      className="rounded-xl p-4 min-w-[280px] h-fit shadow-md"
-      style={{ 
-        backgroundColor: `color-mix(in srgb, ${subcategory.color} 8%, white)`,
-        border: `2px solid color-mix(in srgb, ${subcategory.color} 25%, transparent)`
-      }}
+      className="rounded-md p-4 min-w-[280px] h-fit bg-muted/40 border border-border"
     >
-      <h3 className="font-bold text-base mb-4" style={{ color: subcategory.color }}>
+      <h3 
+        className="font-medium text-sm mb-4 pb-2 border-b border-border/60 tracking-wide"
+        style={{ color: subcategory.color }}
+      >
         {subcategory.name}
       </h3>
       

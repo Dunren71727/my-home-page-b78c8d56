@@ -48,7 +48,7 @@ const iconMap: Record<string, LucideIcon> = {
   'heart-pulse': HeartPulse,
 };
 
-export function DraggableServiceCard({ service, color = 'hsl(25, 95%, 53%)' }: DraggableServiceCardProps) {
+export function DraggableServiceCard({ service, color = 'hsl(25, 45%, 45%)' }: DraggableServiceCardProps) {
   const {
     attributes,
     listeners,
@@ -70,13 +70,13 @@ export function DraggableServiceCard({ service, color = 'hsl(25, 95%, 53%)' }: D
     <div
       ref={setNodeRef}
       style={style}
-      className={`group relative rounded-xl p-3 transition-all duration-200 cursor-pointer
-        ${isDragging ? 'opacity-50 z-50 shadow-2xl scale-105' : 'hover:shadow-lg hover:-translate-y-0.5'}
-        bg-white border-2 border-[var(--card-accent)]/20 hover:border-[var(--card-accent)]/50
+      className={`group relative rounded-md p-3 transition-all duration-200 cursor-pointer
+        ${isDragging ? 'opacity-50 z-50 shadow-lg scale-[1.02]' : 'hover:shadow-md hover:-translate-y-0.5'}
+        bg-card border border-border hover:border-[var(--card-accent)]/40
       `}
     >
       <div 
-        className="absolute left-1.5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-60 cursor-grab active:cursor-grabbing transition-opacity"
+        className="absolute left-1.5 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-50 cursor-grab active:cursor-grabbing transition-opacity"
         {...attributes}
         {...listeners}
       >
@@ -91,15 +91,14 @@ export function DraggableServiceCard({ service, color = 'hsl(25, 95%, 53%)' }: D
         onClick={(e) => e.stopPropagation()}
       >
         <div 
-          className="p-2 rounded-lg transition-colors shrink-0"
-          style={{ backgroundColor: `color-mix(in srgb, ${color} 15%, white)` }}
+          className="p-2 rounded-md transition-colors shrink-0 bg-muted/60"
         >
           <IconComponent className="w-5 h-5" style={{ color }} />
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="font-semibold text-sm" style={{ color }}>{service.name}</h3>
-            <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-60 transition-opacity flex-shrink-0" style={{ color }} />
+            <h3 className="font-medium text-sm text-foreground">{service.name}</h3>
+            <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-50 transition-opacity text-muted-foreground flex-shrink-0" />
           </div>
           {service.description && (
             <p className="text-xs text-muted-foreground truncate mt-0.5">
