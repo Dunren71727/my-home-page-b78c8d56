@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Settings, Plus, Trash2, Save, X, RotateCcw } from 'lucide-react';
+import { Settings, Plus, Trash2, RotateCcw, Palette } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -25,7 +25,7 @@ import {
   TabsTrigger,
 } from '@/components/ui/tabs';
 import { Switch } from '@/components/ui/switch';
-import { Service, Category, DashboardConfig } from '@/types/dashboard';
+import { Service, Category, Subcategory, DashboardConfig } from '@/types/dashboard';
 import { useToast } from '@/hooks/use-toast';
 
 interface ConfigEditorProps {
@@ -33,6 +33,9 @@ interface ConfigEditorProps {
   onAddService: (service: Omit<Service, 'id'>) => void;
   onUpdateService: (id: string, updates: Partial<Service>) => void;
   onDeleteService: (id: string) => void;
+  onAddSubcategory: (subcategory: Omit<Subcategory, 'id'>) => void;
+  onUpdateSubcategory: (id: string, updates: Partial<Subcategory>) => void;
+  onDeleteSubcategory: (id: string) => void;
   onAddCategory: (category: Omit<Category, 'id'>) => void;
   onUpdateCategory: (id: string, updates: Partial<Category>) => void;
   onDeleteCategory: (id: string) => void;
@@ -42,7 +45,20 @@ interface ConfigEditorProps {
 
 const iconOptions = [
   'play', 'code', 'activity', 'globe', 'tv', 'film', 
-  'github', 'container', 'bar-chart-2', 'database', 'shield', 'server'
+  'github', 'container', 'bar-chart-2', 'database', 'shield', 'server',
+  'heart', 'briefcase', 'users', 'clipboard', 'package', 'gift',
+  'file-text', 'graduation-cap', 'play-circle', 'heart-pulse'
+];
+
+const colorPresets = [
+  'hsl(200, 80%, 50%)', // 藍
+  'hsl(35, 90%, 50%)',  // 橙
+  'hsl(145, 70%, 45%)', // 綠
+  'hsl(280, 70%, 55%)', // 紫
+  'hsl(340, 70%, 55%)', // 粉紅
+  'hsl(45, 90%, 55%)',  // 黃
+  'hsl(180, 60%, 45%)', // 青
+  'hsl(15, 80%, 55%)',  // 紅橙
 ];
 
 export function ConfigEditor({
@@ -50,6 +66,9 @@ export function ConfigEditor({
   onAddService,
   onUpdateService,
   onDeleteService,
+  onAddSubcategory,
+  onUpdateSubcategory,
+  onDeleteSubcategory,
   onAddCategory,
   onUpdateCategory,
   onDeleteCategory,
@@ -57,16 +76,26 @@ export function ConfigEditor({
   onReset,
 }: ConfigEditorProps) {
   const { toast } = useToast();
+  
   const [newService, setNewService] = useState({
     name: '',
     url: '',
     icon: 'globe',
     description: '',
-    category: config.categories[0]?.id || '',
+    subcategory: config.subcategories[0]?.id || '',
   });
+  
+  const [newSubcategory, setNewSubcategory] = useState({
+    name: '',
+    icon: 'globe',
+    color: colorPresets[0],
+    categoryId: config.categories[0]?.id || '',
+  });
+  
   const [newCategory, setNewCategory] = useState({
     name: '',
     icon: 'globe',
+    color: colorPresets[0],
   });
 
   const handleAddService = () => {
@@ -75,8 +104,18 @@ export function ConfigEditor({
       return;
     }
     onAddService(newService);
-    setNewService({ name: '', url: '', icon: 'globe', description: '', category: config.categories[0]?.id || '' });
+    setNewService({ name: '', url: '', icon: 'globe', description: '', subcategory: config.subcategories[0]?.id || '' });
     toast({ title: '服務已新增' });
+  };
+
+  const handleAddSubcategory = () => {
+    if (!newSubcategory.name) {
+      toast({ title: '請填寫子分類名稱', variant: 'destructive' });
+      return;
+    }
+    onAddSubcategory(newSubcategory);
+    setNewSubcategory({ name: '', icon: 'globe', color: colorPresets[0], categoryId: config.categories[0]?.id || '' });
+    toast({ title: '子分類已新增' });
   };
 
   const handleAddCategory = () => {
@@ -85,7 +124,7 @@ export function ConfigEditor({
       return;
     }
     onAddCategory(newCategory);
-    setNewCategory({ name: '', icon: 'globe' });
+    setNewCategory({ name: '', icon: 'globe', color: colorPresets[0] });
     toast({ title: '分類已新增' });
   };
 
@@ -103,12 +142,14 @@ export function ConfigEditor({
         </SheetHeader>
 
         <Tabs defaultValue="services" className="mt-6">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="services">服務</TabsTrigger>
-            <TabsTrigger value="categories">分類</TabsTrigger>
+            <TabsTrigger value="subcategories">子分類</TabsTrigger>
+            <TabsTrigger value="categories">主分類</TabsTrigger>
             <TabsTrigger value="settings">設定</TabsTrigger>
           </TabsList>
 
+          {/* Services Tab */}
           <TabsContent value="services" className="space-y-4 mt-4">
             <div className="space-y-4 p-4 rounded-lg bg-muted/50">
               <h4 className="font-medium">新增服務</h4>
@@ -156,17 +197,17 @@ export function ConfigEditor({
                   />
                 </div>
                 <div>
-                  <Label>分類</Label>
+                  <Label>子分類</Label>
                   <Select
-                    value={newService.category}
-                    onValueChange={(value) => setNewService(prev => ({ ...prev, category: value }))}
+                    value={newService.subcategory}
+                    onValueChange={(value) => setNewService(prev => ({ ...prev, subcategory: value }))}
                   >
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      {config.categories.map(cat => (
-                        <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                      {config.subcategories.map(sub => (
+                        <SelectItem key={sub.id} value={sub.id}>{sub.name}</SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -182,12 +223,12 @@ export function ConfigEditor({
               <h4 className="font-medium">現有服務</h4>
               {config.services.map(service => (
                 <div key={service.id} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
-                  <span className="flex-1 truncate">{service.name}</span>
+                  <span className="flex-1 truncate text-sm">{service.name}</span>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={() => onDeleteService(service.id)}
-                    className="text-destructive hover:text-destructive"
+                    className="text-destructive hover:text-destructive h-8 w-8"
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
@@ -196,53 +237,83 @@ export function ConfigEditor({
             </div>
           </TabsContent>
 
-          <TabsContent value="categories" className="space-y-4 mt-4">
+          {/* Subcategories Tab */}
+          <TabsContent value="subcategories" className="space-y-4 mt-4">
             <div className="space-y-4 p-4 rounded-lg bg-muted/50">
-              <h4 className="font-medium">新增分類</h4>
+              <h4 className="font-medium">新增子分類</h4>
               <div className="grid gap-3">
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <Label>名稱</Label>
-                    <Input
-                      value={newCategory.name}
-                      onChange={(e) => setNewCategory(prev => ({ ...prev, name: e.target.value }))}
-                      placeholder="分類名稱"
-                    />
-                  </div>
-                  <div>
-                    <Label>圖示</Label>
-                    <Select
-                      value={newCategory.icon}
-                      onValueChange={(value) => setNewCategory(prev => ({ ...prev, icon: value }))}
-                    >
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {iconOptions.map(icon => (
-                          <SelectItem key={icon} value={icon}>{icon}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                <div>
+                  <Label>名稱</Label>
+                  <Input
+                    value={newSubcategory.name}
+                    onChange={(e) => setNewSubcategory(prev => ({ ...prev, name: e.target.value }))}
+                    placeholder="子分類名稱"
+                  />
+                </div>
+                <div>
+                  <Label>所屬主分類</Label>
+                  <Select
+                    value={newSubcategory.categoryId}
+                    onValueChange={(value) => setNewSubcategory(prev => ({ ...prev, categoryId: value }))}
+                  >
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {config.categories.map(cat => (
+                        <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
+                  <Label>顏色</Label>
+                  <div className="flex gap-2 mt-2 flex-wrap">
+                    {colorPresets.map((color) => (
+                      <button
+                        key={color}
+                        onClick={() => setNewSubcategory(prev => ({ ...prev, color }))}
+                        className={`w-8 h-8 rounded-lg border-2 transition-all ${
+                          newSubcategory.color === color ? 'border-foreground scale-110' : 'border-transparent'
+                        }`}
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
                   </div>
                 </div>
-                <Button onClick={handleAddCategory} className="w-full">
+                <Button onClick={handleAddSubcategory} className="w-full">
                   <Plus className="w-4 h-4 mr-2" />
-                  新增分類
+                  新增子分類
                 </Button>
               </div>
             </div>
 
             <div className="space-y-2">
-              <h4 className="font-medium">現有分類</h4>
-              {config.categories.map(category => (
-                <div key={category.id} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
-                  <span className="flex-1 truncate">{category.name}</span>
+              <h4 className="font-medium">現有子分類</h4>
+              {config.subcategories.map(sub => (
+                <div key={sub.id} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
+                  <div 
+                    className="w-4 h-4 rounded-full shrink-0" 
+                    style={{ backgroundColor: sub.color }}
+                  />
+                  <span className="flex-1 truncate text-sm">{sub.name}</span>
+                  <div className="flex gap-1">
+                    {colorPresets.map((color) => (
+                      <button
+                        key={color}
+                        onClick={() => onUpdateSubcategory(sub.id, { color })}
+                        className={`w-5 h-5 rounded border transition-all ${
+                          sub.color === color ? 'border-foreground' : 'border-transparent hover:border-muted-foreground'
+                        }`}
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
+                  </div>
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => onDeleteCategory(category.id)}
-                    className="text-destructive hover:text-destructive"
+                    onClick={() => onDeleteSubcategory(sub.id)}
+                    className="text-destructive hover:text-destructive h-8 w-8"
                   >
                     <Trash2 className="w-4 h-4" />
                   </Button>
@@ -251,6 +322,76 @@ export function ConfigEditor({
             </div>
           </TabsContent>
 
+          {/* Categories Tab */}
+          <TabsContent value="categories" className="space-y-4 mt-4">
+            <div className="space-y-4 p-4 rounded-lg bg-muted/50">
+              <h4 className="font-medium">新增主分類</h4>
+              <div className="grid gap-3">
+                <div>
+                  <Label>名稱</Label>
+                  <Input
+                    value={newCategory.name}
+                    onChange={(e) => setNewCategory(prev => ({ ...prev, name: e.target.value }))}
+                    placeholder="分類名稱"
+                  />
+                </div>
+                <div>
+                  <Label>顏色</Label>
+                  <div className="flex gap-2 mt-2 flex-wrap">
+                    {colorPresets.map((color) => (
+                      <button
+                        key={color}
+                        onClick={() => setNewCategory(prev => ({ ...prev, color }))}
+                        className={`w-8 h-8 rounded-lg border-2 transition-all ${
+                          newCategory.color === color ? 'border-foreground scale-110' : 'border-transparent'
+                        }`}
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <Button onClick={handleAddCategory} className="w-full">
+                  <Plus className="w-4 h-4 mr-2" />
+                  新增主分類
+                </Button>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <h4 className="font-medium">現有主分類</h4>
+              {config.categories.map(category => (
+                <div key={category.id} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
+                  <div 
+                    className="w-4 h-4 rounded-full shrink-0" 
+                    style={{ backgroundColor: category.color }}
+                  />
+                  <span className="flex-1 truncate text-sm">{category.name}</span>
+                  <div className="flex gap-1">
+                    {colorPresets.map((color) => (
+                      <button
+                        key={color}
+                        onClick={() => onUpdateCategory(category.id, { color })}
+                        className={`w-5 h-5 rounded border transition-all ${
+                          category.color === color ? 'border-foreground' : 'border-transparent hover:border-muted-foreground'
+                        }`}
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => onDeleteCategory(category.id)}
+                    className="text-destructive hover:text-destructive h-8 w-8"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </TabsContent>
+
+          {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-4 mt-4">
             <div className="space-y-4">
               <div>

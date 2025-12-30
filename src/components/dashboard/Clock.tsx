@@ -28,13 +28,8 @@ export function Clock() {
   };
 
   return (
-    <div className="text-center">
-      <div className="text-7xl font-extralight tracking-tight mb-2">
-        {formatTime(time)}
-      </div>
-      <div className="text-lg text-muted-foreground">
-        {formatDate(time)}
-      </div>
+    <div className="text-sm text-muted-foreground font-medium">
+      {formatTime(time)}
     </div>
   );
 }

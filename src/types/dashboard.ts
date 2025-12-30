@@ -4,13 +4,25 @@ export interface Service {
   url: string;
   icon: string;
   description?: string;
-  category: string;
+  subcategory: string;
+  order?: number;
+}
+
+export interface Subcategory {
+  id: string;
+  name: string;
+  icon: string;
+  color: string;
+  categoryId: string;
+  order?: number;
 }
 
 export interface Category {
   id: string;
   name: string;
   icon: string;
+  color: string;
+  order?: number;
 }
 
 export interface WeatherData {
@@ -24,6 +36,7 @@ export interface WeatherData {
 
 export interface DashboardConfig {
   services: Service[];
+  subcategories: Subcategory[];
   categories: Category[];
   searchEngine: 'google' | 'bing' | 'duckduckgo' | 'custom';
   customSearchUrl?: string;
