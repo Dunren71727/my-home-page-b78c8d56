@@ -582,59 +582,7 @@ export function ConfigEditor({
           {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-4 mt-4">
             <div className="space-y-4">
-              <div>
-                <Label>搜尋引擎</Label>
-                <Select
-                  value={config.searchEngine}
-                  onValueChange={(value: 'google' | 'bing' | 'duckduckgo' | 'custom') => 
-                    onUpdateSettings({ searchEngine: value })
-                  }
-                >
-                  <SelectTrigger className="mt-2">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="google">Google</SelectItem>
-                    <SelectItem value="bing">Bing</SelectItem>
-                    <SelectItem value="duckduckgo">DuckDuckGo</SelectItem>
-                    <SelectItem value="custom">自訂</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {config.searchEngine === 'custom' && (
-                <div>
-                  <Label>自訂搜尋網址</Label>
-                  <Input
-                    value={config.customSearchUrl || ''}
-                    onChange={(e) => onUpdateSettings({ customSearchUrl: e.target.value })}
-                    placeholder="https://search.example.com/?q="
-                    className="mt-2"
-                  />
-                </div>
-              )}
-
-              <div className="flex items-center justify-between">
-                <Label>顯示天氣 Widget</Label>
-                <Switch
-                  checked={config.showWeather}
-                  onCheckedChange={(checked) => onUpdateSettings({ showWeather: checked })}
-                />
-              </div>
-
-              {config.showWeather && (
-                <div>
-                  <Label>天氣地點</Label>
-                  <Input
-                    value={config.weatherLocation || ''}
-                    onChange={(e) => onUpdateSettings({ weatherLocation: e.target.value })}
-                    placeholder="城市名稱"
-                    className="mt-2"
-                  />
-                </div>
-              )}
-
-              <Button variant="destructive" onClick={onReset} className="w-full mt-6">
+              <Button variant="destructive" onClick={onReset} className="w-full">
                 <RotateCcw className="w-4 h-4 mr-2" />
                 重置為預設值
               </Button>
