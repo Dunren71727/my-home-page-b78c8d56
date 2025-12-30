@@ -117,12 +117,78 @@ interface ConfigEditorProps {
   onAddSubcategory: (subcategory: Omit<Subcategory, 'id'>) => void;
   onUpdateSubcategory: (id: string, updates: Partial<Subcategory>) => void;
   onDeleteSubcategory: (id: string) => void;
+  onReorderSubcategories: (subcategories: Subcategory[]) => void;
   onAddCategory: (category: Omit<Category, 'id'>) => void;
   onUpdateCategory: (id: string, updates: Partial<Category>) => void;
   onDeleteCategory: (id: string) => void;
   onReorderCategories: (categories: Category[]) => void;
   onUpdateSettings: (updates: Partial<DashboardConfig>) => void;
   onReset: () => void;
+}
+
+interface SortableSubcategoryItemProps {
+  subcategory: Subcategory;
+  colorPresets: string[];
+  onUpdateSubcategory: (id: string, updates: Partial<Subcategory>) => void;
+  onDeleteSubcategory: (id: string) => void;
+}
+
+function SortableSubcategoryItem({ subcategory, colorPresets, onUpdateSubcategory, onDeleteSubcategory }: SortableSubcategoryItemProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: subcategory.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className="flex items-center gap-2 p-3 rounded-lg bg-muted/30"
+    >
+      <button
+        {...attributes}
+        {...listeners}
+        className="cursor-grab hover:bg-muted/50 p-1 rounded touch-none"
+      >
+        <GripVertical className="w-4 h-4 text-muted-foreground" />
+      </button>
+      <div 
+        className="w-4 h-4 rounded-full shrink-0" 
+        style={{ backgroundColor: subcategory.color }}
+      />
+      <span className="flex-1 truncate text-sm">{subcategory.name}</span>
+      <div className="flex gap-1">
+        {colorPresets.map((color) => (
+          <button
+            key={color}
+            onClick={() => onUpdateSubcategory(subcategory.id, { color })}
+            className={`w-5 h-5 rounded border transition-all ${
+              subcategory.color === color ? 'border-foreground' : 'border-transparent hover:border-muted-foreground'
+            }`}
+            style={{ backgroundColor: color }}
+          />
+        ))}
+      </div>
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => onDeleteSubcategory(subcategory.id)}
+        className="text-destructive hover:text-destructive h-8 w-8"
+      >
+        <Trash2 className="w-4 h-4" />
+      </Button>
+    </div>
+  );
 }
 
 const iconOptions = [
@@ -151,6 +217,7 @@ export function ConfigEditor({
   onAddSubcategory,
   onUpdateSubcategory,
   onDeleteSubcategory,
+  onReorderSubcategories,
   onAddCategory,
   onUpdateCategory,
   onDeleteCategory,
@@ -174,6 +241,10 @@ export function ConfigEditor({
   const sortedCategories = useMemo(() => {
     return [...config.categories].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
   }, [config.categories]);
+
+  const sortedSubcategories = useMemo(() => {
+    return [...config.subcategories].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  }, [config.subcategories]);
   
   const [newService, setNewService] = useState({
     name: '',
@@ -224,6 +295,22 @@ export function ConfigEditor({
     onAddCategory(newCategory);
     setNewCategory({ name: '', icon: 'globe', color: colorPresets[0] });
     toast({ title: '分類已新增' });
+  };
+
+  const handleSubcategoryDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      const oldIndex = sortedSubcategories.findIndex((s) => s.id === active.id);
+      const newIndex = sortedSubcategories.findIndex((s) => s.id === over.id);
+
+      const newOrder = [...sortedSubcategories];
+      const [removed] = newOrder.splice(oldIndex, 1);
+      newOrder.splice(newIndex, 0, removed);
+
+      const updatedSubcategories = newOrder.map((s, index) => ({ ...s, order: index }));
+      onReorderSubcategories(updatedSubcategories);
+    }
   };
 
   const handleCategoryDragEnd = (event: DragEndEvent) => {
@@ -403,36 +490,26 @@ export function ConfigEditor({
             </div>
 
             <div className="space-y-2">
-              <h4 className="font-medium">現有子分類</h4>
-              {config.subcategories.map(sub => (
-                <div key={sub.id} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
-                  <div 
-                    className="w-4 h-4 rounded-full shrink-0" 
-                    style={{ backgroundColor: sub.color }}
-                  />
-                  <span className="flex-1 truncate text-sm">{sub.name}</span>
-                  <div className="flex gap-1">
-                    {colorPresets.map((color) => (
-                      <button
-                        key={color}
-                        onClick={() => onUpdateSubcategory(sub.id, { color })}
-                        className={`w-5 h-5 rounded border transition-all ${
-                          sub.color === color ? 'border-foreground' : 'border-transparent hover:border-muted-foreground'
-                        }`}
-                        style={{ backgroundColor: color }}
+              <h4 className="font-medium">現有子分類 <span className="text-xs text-muted-foreground">(拖曳排序)</span></h4>
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleSubcategoryDragEnd}
+              >
+                <SortableContext items={sortedSubcategories.map(s => s.id)} strategy={verticalListSortingStrategy}>
+                  <div className="space-y-2">
+                    {sortedSubcategories.map(sub => (
+                      <SortableSubcategoryItem
+                        key={sub.id}
+                        subcategory={sub}
+                        colorPresets={colorPresets}
+                        onUpdateSubcategory={onUpdateSubcategory}
+                        onDeleteSubcategory={onDeleteSubcategory}
                       />
                     ))}
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => onDeleteSubcategory(sub.id)}
-                    className="text-destructive hover:text-destructive h-8 w-8"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
-              ))}
+                </SortableContext>
+              </DndContext>
             </div>
           </TabsContent>
 

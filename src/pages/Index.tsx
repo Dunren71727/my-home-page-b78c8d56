@@ -14,6 +14,7 @@ const Index = () => {
     addSubcategory,
     updateSubcategory,
     deleteSubcategory,
+    reorderSubcategories,
     addCategory,
     updateCategory,
     deleteCategory,
@@ -64,6 +65,7 @@ const Index = () => {
                   onAddSubcategory={addSubcategory}
                   onUpdateSubcategory={updateSubcategory}
                   onDeleteSubcategory={deleteSubcategory}
+                  onReorderSubcategories={reorderSubcategories}
                   onAddCategory={addCategory}
                   onUpdateCategory={updateCategory}
                   onDeleteCategory={deleteCategory}
