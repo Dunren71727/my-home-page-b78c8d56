@@ -3,58 +3,48 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  :root,
+  [data-theme="default"] {
     /* ═══════════════════════════════════════════════
-       高級明亮配色 - Premium Bright
-       純淨白底 + 優雅深藍 + 亮金點綴
+       預設配色 - 深藍金
     ═══════════════════════════════════════════════ */
     
-    /* 純淨白色底 */
     --background: 210 40% 99%;
     --foreground: 215 25% 20%;
     
-    /* Card - 純白明亮 */
     --card: 0 0% 100%;
     --card-foreground: 215 25% 20%;
     
     --popover: 0 0% 100%;
     --popover-foreground: 215 25% 20%;
     
-    /* 優雅深藍 - Primary */
     --primary: 215 65% 38%;
     --primary-foreground: 0 0% 100%;
     
-    /* 亮金色 - Secondary */
     --secondary: 45 85% 55%;
     --secondary-foreground: 215 25% 15%;
     
-    /* 淺灰藍 - Muted */
     --muted: 210 30% 96%;
     --muted-foreground: 215 15% 50%;
     
-    /* 琥珀金 - Accent */
     --accent: 38 75% 50%;
     --accent-foreground: 0 0% 100%;
     
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;
     
-    /* 邊框 - 柔和淺灰 */
     --border: 210 25% 92%;
     --input: 210 25% 92%;
     --ring: 215 65% 38%;
     
-    /* 現代圓角 */
     --radius: 12px;
     
-    /* Chart 配色 */
     --chart-1: 215 65% 38%;
     --chart-2: 45 85% 55%;
     --chart-3: 38 75% 50%;
     --chart-4: 180 45% 45%;
     --chart-5: 340 65% 55%;
     
-    /* Sidebar */
     --sidebar-background: 210 35% 98%;
     --sidebar-foreground: 215 25% 20%;
     --sidebar-primary: 215 65% 38%;
@@ -64,9 +54,6 @@
     --sidebar-border: 210 25% 92%;
     --sidebar-ring: 215 65% 38%;
 
-    /* ═══════════════════════════════════════════════
-       高級配色變數
-    ═══════════════════════════════════════════════ */
     --bright-gold: 45 90% 58%;
     --soft-gold: 45 70% 75%;
     --navy: 215 65% 38%;
@@ -74,6 +61,174 @@
     --sky-light: 205 85% 95%;
     --sky-soft: 210 60% 97%;
     --pearl: 210 30% 98%;
+  }
+
+  /* ═══════════════════════════════════════════════
+     卡通繽紛 - Cartoon Colorful
+  ═══════════════════════════════════════════════ */
+  [data-theme="cartoon"] {
+    --background: 280 60% 98%;
+    --foreground: 280 40% 20%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 280 40% 20%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 280 40% 20%;
+    
+    --primary: 280 75% 55%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 45 95% 60%;
+    --secondary-foreground: 280 40% 15%;
+    
+    --muted: 280 30% 95%;
+    --muted-foreground: 280 20% 50%;
+    
+    --accent: 340 80% 60%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 80% 55%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 280 30% 90%;
+    --input: 280 30% 90%;
+    --ring: 280 75% 55%;
+    
+    --chart-1: 280 75% 55%;
+    --chart-2: 45 95% 60%;
+    --chart-3: 340 80% 60%;
+    --chart-4: 170 70% 50%;
+    --chart-5: 200 80% 55%;
+    
+    --sidebar-background: 280 50% 97%;
+    --sidebar-foreground: 280 40% 20%;
+    --sidebar-primary: 280 75% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 95% 60%;
+    --sidebar-accent-foreground: 280 40% 15%;
+    --sidebar-border: 280 30% 90%;
+    --sidebar-ring: 280 75% 55%;
+
+    --bright-gold: 45 95% 60%;
+    --soft-gold: 45 80% 80%;
+    --navy: 280 75% 55%;
+    --navy-light: 280 60% 65%;
+    --sky-light: 280 60% 95%;
+    --sky-soft: 280 50% 97%;
+    --pearl: 280 30% 98%;
+  }
+
+  /* ═══════════════════════════════════════════════
+     暖陽 - Warm Sunshine
+  ═══════════════════════════════════════════════ */
+  [data-theme="warm"] {
+    --background: 35 60% 98%;
+    --foreground: 25 40% 20%;
+    
+    --card: 40 50% 99%;
+    --card-foreground: 25 40% 20%;
+    
+    --popover: 40 50% 99%;
+    --popover-foreground: 25 40% 20%;
+    
+    --primary: 25 85% 50%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 45 90% 55%;
+    --secondary-foreground: 25 40% 15%;
+    
+    --muted: 35 40% 94%;
+    --muted-foreground: 25 25% 45%;
+    
+    --accent: 15 80% 55%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 35 35% 88%;
+    --input: 35 35% 88%;
+    --ring: 25 85% 50%;
+    
+    --chart-1: 25 85% 50%;
+    --chart-2: 45 90% 55%;
+    --chart-3: 15 80% 55%;
+    --chart-4: 55 75% 50%;
+    --chart-5: 5 70% 55%;
+    
+    --sidebar-background: 35 50% 96%;
+    --sidebar-foreground: 25 40% 20%;
+    --sidebar-primary: 25 85% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 90% 55%;
+    --sidebar-accent-foreground: 25 40% 15%;
+    --sidebar-border: 35 35% 88%;
+    --sidebar-ring: 25 85% 50%;
+
+    --bright-gold: 45 95% 55%;
+    --soft-gold: 45 75% 75%;
+    --navy: 25 85% 50%;
+    --navy-light: 25 70% 60%;
+    --sky-light: 40 70% 95%;
+    --sky-soft: 35 55% 97%;
+    --pearl: 35 40% 98%;
+  }
+
+  /* ═══════════════════════════════════════════════
+     水金 - Aqua Gold
+  ═══════════════════════════════════════════════ */
+  [data-theme="aqua-gold"] {
+    --background: 180 45% 98%;
+    --foreground: 190 35% 18%;
+    
+    --card: 175 40% 99%;
+    --card-foreground: 190 35% 18%;
+    
+    --popover: 175 40% 99%;
+    --popover-foreground: 190 35% 18%;
+    
+    --primary: 185 70% 40%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 48 90% 55%;
+    --secondary-foreground: 190 35% 15%;
+    
+    --muted: 180 35% 94%;
+    --muted-foreground: 190 20% 45%;
+    
+    --accent: 42 85% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 180 30% 88%;
+    --input: 180 30% 88%;
+    --ring: 185 70% 40%;
+    
+    --chart-1: 185 70% 40%;
+    --chart-2: 48 90% 55%;
+    --chart-3: 42 85% 50%;
+    --chart-4: 160 60% 45%;
+    --chart-5: 200 65% 50%;
+    
+    --sidebar-background: 180 40% 96%;
+    --sidebar-foreground: 190 35% 18%;
+    --sidebar-primary: 185 70% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 48 90% 55%;
+    --sidebar-accent-foreground: 190 35% 15%;
+    --sidebar-border: 180 30% 88%;
+    --sidebar-ring: 185 70% 40%;
+
+    --bright-gold: 48 95% 55%;
+    --soft-gold: 48 75% 75%;
+    --navy: 185 70% 40%;
+    --navy-light: 185 55% 50%;
+    --sky-light: 180 65% 95%;
+    --sky-soft: 180 50% 97%;
+    --pearl: 180 35% 98%;
   }
   
   .dark {

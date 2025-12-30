@@ -24,7 +24,7 @@ const Index = () => {
   } = useDashboardConfig();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" data-theme={config.theme || 'default'}>
       {/* 明亮高級漸層背景 */}
       <div className="fixed inset-0 premium-gradient" />
       <div 

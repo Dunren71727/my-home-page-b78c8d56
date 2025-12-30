@@ -77,6 +77,7 @@ const defaultConfig: DashboardConfig = {
   searchEngine: 'google',
   showWeather: true,
   weatherLocation: 'Taipei',
+  theme: 'default',
 };
 
 const STORAGE_KEY = 'dashboard-config';
