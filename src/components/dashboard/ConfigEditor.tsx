@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
-import { Settings, Plus, Trash2, RotateCcw, Palette, GripVertical, ChevronDown, ChevronUp, Globe, Pencil } from 'lucide-react';
+import { Settings, Plus, Trash2, RotateCcw, Palette, GripVertical, ChevronDown, ChevronUp, Globe, Pencil, Database } from 'lucide-react';
+import { SqliteManager } from './SqliteManager';
 import {
   DndContext,
   closestCenter,
@@ -363,10 +364,14 @@ export function ConfigEditor({
         </SheetHeader>
 
         <Tabs defaultValue="services" className="mt-6">
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="services">服務</TabsTrigger>
             <TabsTrigger value="subcategories">子分類</TabsTrigger>
             <TabsTrigger value="categories">主分類</TabsTrigger>
+            <TabsTrigger value="database" className="flex items-center gap-1">
+              <Database className="w-3 h-3" />
+              資料庫
+            </TabsTrigger>
             <TabsTrigger value="settings">設定</TabsTrigger>
           </TabsList>
 
@@ -803,6 +808,11 @@ export function ConfigEditor({
                 </SortableContext>
               </DndContext>
             </div>
+          </TabsContent>
+
+          {/* Database Tab */}
+          <TabsContent value="database" className="space-y-4 mt-4">
+            <SqliteManager />
           </TabsContent>
 
           {/* Settings Tab */}
