@@ -35,13 +35,13 @@ const Index = () => {
 
       {/* Content */}
       <div className="relative z-10 min-h-screen">
-        {/* 酒紅色頂部導航 - 明亮優雅 */}
-        <header className="warm-nav text-white">
+        {/* 土亮黃頂部導航 - 明亮清爽 */}
+        <header className="warm-nav">
           <div className="max-w-[1600px] mx-auto px-4 md:px-6 py-4">
             <div className="flex justify-between items-center gap-4">
-              {/* 標題 - 香檳金點綴 */}
+              {/* 標題 - 酒紅色文字 */}
               <div className="flex items-center gap-4">
-                <h1 className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: 'hsl(43 65% 70%)' }}>
+                <h1 className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: 'hsl(var(--burgundy))' }}>
                   🏥 敦仁醫院 服務入口
                 </h1>
               </div>
