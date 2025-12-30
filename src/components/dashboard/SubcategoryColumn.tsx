@@ -57,10 +57,11 @@ export function SubcategoryColumn({ subcategory, services, onReorderServices }: 
   if (sortedServices.length === 0) return null;
 
   return (
-    <div className="rounded-md p-4 min-w-[280px] h-fit bg-muted/25 border border-border">
-      {/* 子分類標題 - 酒紅色強調 */}
-      <h3 className="font-semibold text-sm mb-4 pb-2.5 border-b border-border tracking-wide text-primary">
-        {subcategory.name}
+    <div className="rounded-xl p-5 min-w-[300px] h-fit bg-muted/40 border border-border/50 backdrop-blur-sm hover-float">
+      {/* 子分類標題 - 繽紛漸層 */}
+      <h3 className="font-bold text-base mb-5 pb-3 border-b-2 border-gradient-to-r from-primary to-secondary tracking-wide 
+        bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        ✦ {subcategory.name}
       </h3>
       
       <DndContext
@@ -69,11 +70,12 @@ export function SubcategoryColumn({ subcategory, services, onReorderServices }: 
         onDragEnd={handleDragEnd}
       >
         <SortableContext items={sortedServices.map(s => s.id)} strategy={verticalListSortingStrategy}>
-          <div className="space-y-2.5">
-            {sortedServices.map((service) => (
+          <div className="space-y-3">
+            {sortedServices.map((service, index) => (
               <DraggableServiceCard 
                 key={service.id} 
-                service={service} 
+                service={service}
+                index={index}
               />
             ))}
           </div>

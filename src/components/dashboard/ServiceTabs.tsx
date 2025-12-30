@@ -17,26 +17,31 @@ export function ServiceTabs({ categories, subcategories, services, onReorderServ
 
   if (sortedCategories.length === 0) {
     return (
-      <div className="text-center py-12 text-muted-foreground">
-        尚無分類，請在設定中新增
+      <div className="text-center py-16 text-xl text-muted-foreground glass-card">
+        尚無分類，請在設定中新增 ✨
       </div>
     );
   }
 
   return (
-    <div className="matte-card rounded-md overflow-hidden">
+    <div className="glass-card overflow-hidden animate-fade-up">
       <Tabs defaultValue={sortedCategories[0]?.id} className="w-full">
-        {/* Tab header - 拉絲金屬效果 */}
-        <div className="border-b border-border bg-muted/30">
-          <TabsList className="w-full justify-start h-auto p-0 bg-transparent rounded-none">
-            {sortedCategories.map((category) => (
+        {/* Tab header - 繽紛標籤 */}
+        <div className="border-b border-border/50 bg-gradient-to-r from-muted/30 via-muted/20 to-muted/30">
+          <TabsList className="w-full justify-start h-auto p-1.5 bg-transparent rounded-none gap-2">
+            {sortedCategories.map((category, index) => (
               <TabsTrigger
                 key={category.id}
                 value={category.id}
-                className="relative px-6 py-3.5 rounded-none border-b-2 border-transparent 
-                  data-[state=active]:bg-card data-[state=active]:border-primary
-                  data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground
-                  transition-all duration-200 font-medium text-sm tracking-wide"
+                className="relative px-6 py-3 rounded-xl
+                  data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-vibrant-pink
+                  data-[state=active]:text-white data-[state=active]:shadow-lg data-[state=active]:shadow-primary/30
+                  data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground 
+                  data-[state=inactive]:hover:bg-muted/50
+                  transition-all duration-300 font-bold text-base tracking-wide"
+                style={{
+                  animationDelay: `${index * 0.1}s`
+                }}
               >
                 {category.name}
               </TabsTrigger>
@@ -48,7 +53,7 @@ export function ServiceTabs({ categories, subcategories, services, onReorderServ
           <TabsContent 
             key={category.id} 
             value={category.id}
-            className="mt-0 focus-visible:outline-none bg-card"
+            className="mt-0 focus-visible:outline-none bg-card/80"
           >
             <CategoryTabContent
               category={category}

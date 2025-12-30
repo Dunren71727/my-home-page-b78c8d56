@@ -25,10 +25,10 @@ export function Clock() {
   };
 
   return (
-    <div className="flex items-center gap-2 text-secondary-foreground/90 text-sm font-medium tracking-wide">
-      <span>{formatDate(time)}</span>
-      <span className="opacity-50">|</span>
-      <span className="tabular-nums">{formatTime(time)}</span>
+    <div className="flex items-center gap-3 text-white text-base font-bold tracking-wide">
+      <span className="drop-shadow-sm">📅 {formatDate(time)}</span>
+      <span className="opacity-60">|</span>
+      <span className="tabular-nums drop-shadow-sm">⏰ {formatTime(time)}</span>
     </div>
   );
 }
