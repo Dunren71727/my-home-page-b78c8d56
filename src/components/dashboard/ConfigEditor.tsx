@@ -1,5 +1,21 @@
-import { useState } from 'react';
-import { Settings, Plus, Trash2, RotateCcw, Palette } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Settings, Plus, Trash2, RotateCcw, Palette, GripVertical } from 'lucide-react';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+  useSortable,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -28,6 +44,71 @@ import { Switch } from '@/components/ui/switch';
 import { Service, Category, Subcategory, DashboardConfig } from '@/types/dashboard';
 import { useToast } from '@/hooks/use-toast';
 
+interface SortableCategoryItemProps {
+  category: Category;
+  colorPresets: string[];
+  onUpdateCategory: (id: string, updates: Partial<Category>) => void;
+  onDeleteCategory: (id: string) => void;
+}
+
+function SortableCategoryItem({ category, colorPresets, onUpdateCategory, onDeleteCategory }: SortableCategoryItemProps) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: category.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className="flex items-center gap-2 p-3 rounded-lg bg-muted/30"
+    >
+      <button
+        {...attributes}
+        {...listeners}
+        className="cursor-grab hover:bg-muted/50 p-1 rounded touch-none"
+      >
+        <GripVertical className="w-4 h-4 text-muted-foreground" />
+      </button>
+      <div 
+        className="w-4 h-4 rounded-full shrink-0" 
+        style={{ backgroundColor: category.color }}
+      />
+      <span className="flex-1 truncate text-sm">{category.name}</span>
+      <div className="flex gap-1">
+        {colorPresets.map((color) => (
+          <button
+            key={color}
+            onClick={() => onUpdateCategory(category.id, { color })}
+            className={`w-5 h-5 rounded border transition-all ${
+              category.color === color ? 'border-foreground' : 'border-transparent hover:border-muted-foreground'
+            }`}
+            style={{ backgroundColor: color }}
+          />
+        ))}
+      </div>
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => onDeleteCategory(category.id)}
+        className="text-destructive hover:text-destructive h-8 w-8"
+      >
+        <Trash2 className="w-4 h-4" />
+      </Button>
+    </div>
+  );
+}
+
 interface ConfigEditorProps {
   config: DashboardConfig;
   onAddService: (service: Omit<Service, 'id'>) => void;
@@ -39,6 +120,7 @@ interface ConfigEditorProps {
   onAddCategory: (category: Omit<Category, 'id'>) => void;
   onUpdateCategory: (id: string, updates: Partial<Category>) => void;
   onDeleteCategory: (id: string) => void;
+  onReorderCategories: (categories: Category[]) => void;
   onUpdateSettings: (updates: Partial<DashboardConfig>) => void;
   onReset: () => void;
 }
@@ -72,10 +154,26 @@ export function ConfigEditor({
   onAddCategory,
   onUpdateCategory,
   onDeleteCategory,
+  onReorderCategories,
   onUpdateSettings,
   onReset,
 }: ConfigEditorProps) {
   const { toast } = useToast();
+  
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 8,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  const sortedCategories = useMemo(() => {
+    return [...config.categories].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  }, [config.categories]);
   
   const [newService, setNewService] = useState({
     name: '',
@@ -126,6 +224,22 @@ export function ConfigEditor({
     onAddCategory(newCategory);
     setNewCategory({ name: '', icon: 'globe', color: colorPresets[0] });
     toast({ title: '分類已新增' });
+  };
+
+  const handleCategoryDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      const oldIndex = sortedCategories.findIndex((c) => c.id === active.id);
+      const newIndex = sortedCategories.findIndex((c) => c.id === over.id);
+
+      const newOrder = [...sortedCategories];
+      const [removed] = newOrder.splice(oldIndex, 1);
+      newOrder.splice(newIndex, 0, removed);
+
+      const updatedCategories = newOrder.map((c, index) => ({ ...c, order: index }));
+      onReorderCategories(updatedCategories);
+    }
   };
 
   return (
@@ -358,36 +472,26 @@ export function ConfigEditor({
             </div>
 
             <div className="space-y-2">
-              <h4 className="font-medium">現有主分類</h4>
-              {config.categories.map(category => (
-                <div key={category.id} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
-                  <div 
-                    className="w-4 h-4 rounded-full shrink-0" 
-                    style={{ backgroundColor: category.color }}
-                  />
-                  <span className="flex-1 truncate text-sm">{category.name}</span>
-                  <div className="flex gap-1">
-                    {colorPresets.map((color) => (
-                      <button
-                        key={color}
-                        onClick={() => onUpdateCategory(category.id, { color })}
-                        className={`w-5 h-5 rounded border transition-all ${
-                          category.color === color ? 'border-foreground' : 'border-transparent hover:border-muted-foreground'
-                        }`}
-                        style={{ backgroundColor: color }}
+              <h4 className="font-medium">現有主分類 <span className="text-xs text-muted-foreground">(拖曳排序)</span></h4>
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleCategoryDragEnd}
+              >
+                <SortableContext items={sortedCategories.map(c => c.id)} strategy={verticalListSortingStrategy}>
+                  <div className="space-y-2">
+                    {sortedCategories.map(category => (
+                      <SortableCategoryItem
+                        key={category.id}
+                        category={category}
+                        colorPresets={colorPresets}
+                        onUpdateCategory={onUpdateCategory}
+                        onDeleteCategory={onDeleteCategory}
                       />
                     ))}
                   </div>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => onDeleteCategory(category.id)}
-                    className="text-destructive hover:text-destructive h-8 w-8"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
-              ))}
+                </SortableContext>
+              </DndContext>
             </div>
           </TabsContent>
 
