@@ -129,11 +129,12 @@ interface ConfigEditorProps {
 interface SortableSubcategoryItemProps {
   subcategory: Subcategory;
   colorPresets: string[];
+  categoryName: string;
   onUpdateSubcategory: (id: string, updates: Partial<Subcategory>) => void;
   onDeleteSubcategory: (id: string) => void;
 }
 
-function SortableSubcategoryItem({ subcategory, colorPresets, onUpdateSubcategory, onDeleteSubcategory }: SortableSubcategoryItemProps) {
+function SortableSubcategoryItem({ subcategory, colorPresets, categoryName, onUpdateSubcategory, onDeleteSubcategory }: SortableSubcategoryItemProps) {
   const {
     attributes,
     listeners,
@@ -166,7 +167,10 @@ function SortableSubcategoryItem({ subcategory, colorPresets, onUpdateSubcategor
         className="w-4 h-4 rounded-full shrink-0" 
         style={{ backgroundColor: subcategory.color }}
       />
-      <span className="flex-1 truncate text-sm">{subcategory.name}</span>
+      <div className="flex-1 min-w-0">
+        <span className="truncate text-sm block">{subcategory.name}</span>
+        <span className="text-xs text-muted-foreground truncate block">{categoryName}</span>
+      </div>
       <div className="flex gap-1">
         {colorPresets.map((color) => (
           <button
@@ -498,15 +502,19 @@ export function ConfigEditor({
               >
                 <SortableContext items={sortedSubcategories.map(s => s.id)} strategy={verticalListSortingStrategy}>
                   <div className="space-y-2">
-                    {sortedSubcategories.map(sub => (
-                      <SortableSubcategoryItem
-                        key={sub.id}
-                        subcategory={sub}
-                        colorPresets={colorPresets}
-                        onUpdateSubcategory={onUpdateSubcategory}
-                        onDeleteSubcategory={onDeleteSubcategory}
-                      />
-                    ))}
+                    {sortedSubcategories.map(sub => {
+                      const category = config.categories.find(c => c.id === sub.categoryId);
+                      return (
+                        <SortableSubcategoryItem
+                          key={sub.id}
+                          subcategory={sub}
+                          colorPresets={colorPresets}
+                          categoryName={category?.name || '未分類'}
+                          onUpdateSubcategory={onUpdateSubcategory}
+                          onDeleteSubcategory={onDeleteSubcategory}
+                        />
+                      );
+                    })}
                   </div>
                 </SortableContext>
               </DndContext>
