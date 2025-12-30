@@ -229,27 +229,27 @@
   }
   
   /* ═══════════════════════════════════════════════
-     明亮跳色卡片
+     明亮跳色卡片 - 高對比
   ═══════════════════════════════════════════════ */
   .card-variant-1 {
     @apply transition-all duration-300;
     background: linear-gradient(
       145deg,
       hsl(0 0% 100%) 0%,
-      hsl(210 50% 99%) 100%
+      hsl(210 60% 97%) 100%
     );
-    border: 1px solid hsl(var(--bright-gold) / 0.25);
+    border: 2px solid hsl(var(--navy) / 0.15);
     box-shadow: 
-      0 4px 16px hsl(215 50% 50% / 0.05),
-      inset 0 1px 0 hsl(0 0% 100% / 0.95);
+      0 4px 16px hsl(215 50% 50% / 0.08),
+      inset 0 1px 0 hsl(0 0% 100%);
   }
   
   .card-variant-1:hover {
-    border-color: hsl(var(--bright-gold) / 0.6);
+    border-color: hsl(var(--bright-gold) / 0.7);
     box-shadow: 
-      0 0 24px hsl(var(--bright-gold) / 0.35),
-      0 0 48px hsl(var(--bright-gold) / 0.15),
-      0 8px 24px hsl(var(--bright-gold) / 0.12),
+      0 0 24px hsl(var(--bright-gold) / 0.4),
+      0 0 48px hsl(var(--bright-gold) / 0.18),
+      0 8px 24px hsl(var(--bright-gold) / 0.15),
       inset 0 1px 0 hsl(0 0% 100%);
   }
   
@@ -257,21 +257,21 @@
     @apply transition-all duration-300;
     background: linear-gradient(
       145deg,
-      hsl(var(--sky-soft)) 0%,
-      hsl(var(--pearl)) 100%
+      hsl(45 80% 96%) 0%,
+      hsl(48 90% 92%) 100%
     );
-    border: 1px solid hsl(var(--navy) / 0.12);
+    border: 2px solid hsl(var(--bright-gold) / 0.35);
     box-shadow: 
-      0 4px 16px hsl(215 50% 50% / 0.04),
+      0 4px 16px hsl(45 80% 50% / 0.1),
       inset 0 1px 0 hsl(0 0% 100% / 0.9);
   }
   
   .card-variant-2:hover {
-    border-color: hsl(var(--bright-gold) / 0.5);
+    border-color: hsl(var(--bright-gold) / 0.7);
     box-shadow: 
-      0 0 22px hsl(var(--bright-gold) / 0.32),
-      0 0 44px hsl(var(--bright-gold) / 0.12),
-      0 8px 24px hsl(var(--navy) / 0.06),
+      0 0 22px hsl(var(--bright-gold) / 0.45),
+      0 0 44px hsl(var(--bright-gold) / 0.2),
+      0 8px 24px hsl(var(--bright-gold) / 0.15),
       inset 0 1px 0 hsl(0 0% 100%);
   }
   
@@ -279,21 +279,21 @@
     @apply transition-all duration-300;
     background: linear-gradient(
       145deg,
-      hsl(48 100% 99%) 0%,
-      hsl(0 0% 100%) 100%
+      hsl(200 70% 96%) 0%,
+      hsl(205 80% 92%) 100%
     );
-    border: 1px solid hsl(var(--soft-gold) / 0.4);
+    border: 2px solid hsl(var(--navy) / 0.2);
     box-shadow: 
-      0 4px 16px hsl(45 80% 50% / 0.06),
+      0 4px 16px hsl(215 60% 50% / 0.08),
       inset 0 1px 0 hsl(0 0% 100%);
   }
   
   .card-variant-3:hover {
     border-color: hsl(var(--bright-gold) / 0.65);
     box-shadow: 
-      0 0 26px hsl(var(--bright-gold) / 0.38),
-      0 0 52px hsl(var(--bright-gold) / 0.16),
-      0 8px 24px hsl(var(--bright-gold) / 0.12),
+      0 0 26px hsl(var(--bright-gold) / 0.42),
+      0 0 52px hsl(var(--bright-gold) / 0.18),
+      0 8px 24px hsl(var(--bright-gold) / 0.14),
       inset 0 1px 0 hsl(0 0% 100%);
   }
   
