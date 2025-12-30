@@ -1,7 +1,7 @@
 import { Service, Category } from '@/types/dashboard';
 import { ServiceCard } from './ServiceCard';
 import { 
-  Play, Code, Activity, Globe, LucideIcon
+  Users, Clipboard, Heart, Briefcase, Package, Gift, FileText, GraduationCap, PlayCircle, Globe, LucideIcon
 } from 'lucide-react';
 
 interface ServiceGridProps {
@@ -10,9 +10,15 @@ interface ServiceGridProps {
 }
 
 const categoryIconMap: Record<string, LucideIcon> = {
-  play: Play,
-  code: Code,
-  activity: Activity,
+  users: Users,
+  clipboard: Clipboard,
+  heart: Heart,
+  briefcase: Briefcase,
+  package: Package,
+  gift: Gift,
+  'file-text': FileText,
+  'graduation-cap': GraduationCap,
+  'play-circle': PlayCircle,
   globe: Globe,
 };
 

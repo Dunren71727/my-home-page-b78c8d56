@@ -35,7 +35,7 @@ const Index = () => {
         <header className="flex justify-between items-start mb-12">
           <div className="glass-card rounded-xl px-4 py-2">
             <span className="text-lg font-medium bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">
-              Dunren Homepage
+              敦仁醫院 服務入口
             </span>
           </div>
           <ConfigEditor

@@ -1,6 +1,8 @@
 import { 
-  Play, Code, Activity, Globe, Tv, Film, Github, Container, 
-  BarChart2, Database, Shield, Server, ExternalLink, LucideIcon
+  Users, Clipboard, Heart, Briefcase, Package, Gift, FileText, GraduationCap, PlayCircle,
+  UserCheck, Building, AlertTriangle, FlaskConical, Dumbbell, CalendarHeart, ClipboardCheck,
+  Shield, CheckSquare, Search, Clock, Cake, Megaphone, FileCheck, ShieldCheck, Scroll,
+  AlertCircle, Phone, LayoutDashboard, Files, ExternalLink, Globe, LucideIcon
 } from 'lucide-react';
 import { Service } from '@/types/dashboard';
 
@@ -9,18 +11,36 @@ interface ServiceCardProps {
 }
 
 const iconMap: Record<string, LucideIcon> = {
-  play: Play,
-  code: Code,
-  activity: Activity,
-  globe: Globe,
-  tv: Tv,
-  film: Film,
-  github: Github,
-  container: Container,
-  'bar-chart-2': BarChart2,
-  database: Database,
+  users: Users,
+  clipboard: Clipboard,
+  heart: Heart,
+  briefcase: Briefcase,
+  package: Package,
+  gift: Gift,
+  'file-text': FileText,
+  'graduation-cap': GraduationCap,
+  'play-circle': PlayCircle,
+  'user-check': UserCheck,
+  building: Building,
+  'alert-triangle': AlertTriangle,
+  'flask-conical': FlaskConical,
+  dumbbell: Dumbbell,
+  'calendar-heart': CalendarHeart,
+  'clipboard-check': ClipboardCheck,
   shield: Shield,
-  server: Server,
+  'check-square': CheckSquare,
+  search: Search,
+  clock: Clock,
+  cake: Cake,
+  megaphone: Megaphone,
+  'file-check': FileCheck,
+  'shield-check': ShieldCheck,
+  scroll: Scroll,
+  'alert-circle': AlertCircle,
+  phone: Phone,
+  'layout-dashboard': LayoutDashboard,
+  files: Files,
+  globe: Globe,
 };
 
 export function ServiceCard({ service }: ServiceCardProps) {
@@ -40,7 +60,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <h3 className="font-medium truncate">{service.name}</h3>
-            <ExternalLink className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+            <ExternalLink className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
           </div>
           {service.description && (
             <p className="text-sm text-muted-foreground truncate mt-1">
