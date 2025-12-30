@@ -129,12 +129,12 @@ interface ConfigEditorProps {
 interface SortableSubcategoryItemProps {
   subcategory: Subcategory;
   colorPresets: string[];
-  categoryName: string;
+  categories: Category[];
   onUpdateSubcategory: (id: string, updates: Partial<Subcategory>) => void;
   onDeleteSubcategory: (id: string) => void;
 }
 
-function SortableSubcategoryItem({ subcategory, colorPresets, categoryName, onUpdateSubcategory, onDeleteSubcategory }: SortableSubcategoryItemProps) {
+function SortableSubcategoryItem({ subcategory, colorPresets, categories, onUpdateSubcategory, onDeleteSubcategory }: SortableSubcategoryItemProps) {
   const {
     attributes,
     listeners,
@@ -149,6 +149,8 @@ function SortableSubcategoryItem({ subcategory, colorPresets, categoryName, onUp
     transition,
     opacity: isDragging ? 0.5 : 1,
   };
+
+  const categoryName = categories.find(c => c.id === subcategory.categoryId)?.name || '未分類';
 
   return (
     <div
@@ -169,7 +171,19 @@ function SortableSubcategoryItem({ subcategory, colorPresets, categoryName, onUp
       />
       <div className="flex-1 min-w-0">
         <span className="truncate text-sm block">{subcategory.name}</span>
-        <span className="text-xs text-muted-foreground truncate block">{categoryName}</span>
+        <Select
+          value={subcategory.categoryId}
+          onValueChange={(value) => onUpdateSubcategory(subcategory.id, { categoryId: value })}
+        >
+          <SelectTrigger className="h-6 text-xs text-muted-foreground border-none p-0 bg-transparent shadow-none hover:bg-muted/50">
+            <SelectValue placeholder={categoryName} />
+          </SelectTrigger>
+          <SelectContent>
+            {categories.map(cat => (
+              <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </div>
       <div className="flex gap-1">
         {colorPresets.map((color) => (
@@ -502,19 +516,16 @@ export function ConfigEditor({
               >
                 <SortableContext items={sortedSubcategories.map(s => s.id)} strategy={verticalListSortingStrategy}>
                   <div className="space-y-2">
-                    {sortedSubcategories.map(sub => {
-                      const category = config.categories.find(c => c.id === sub.categoryId);
-                      return (
-                        <SortableSubcategoryItem
-                          key={sub.id}
-                          subcategory={sub}
-                          colorPresets={colorPresets}
-                          categoryName={category?.name || '未分類'}
-                          onUpdateSubcategory={onUpdateSubcategory}
-                          onDeleteSubcategory={onDeleteSubcategory}
-                        />
-                      );
-                    })}
+                    {sortedSubcategories.map(sub => (
+                      <SortableSubcategoryItem
+                        key={sub.id}
+                        subcategory={sub}
+                        colorPresets={colorPresets}
+                        categories={config.categories}
+                        onUpdateSubcategory={onUpdateSubcategory}
+                        onDeleteSubcategory={onDeleteSubcategory}
+                      />
+                    ))}
                   </div>
                 </SortableContext>
               </DndContext>
