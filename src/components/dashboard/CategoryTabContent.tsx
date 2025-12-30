@@ -40,7 +40,7 @@ export function CategoryTabContent({
         </h2>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ gridTemplateColumns: categorySubcategories.length <= 3 ? `repeat(${categorySubcategories.length}, 1fr)` : undefined }}>
         {categorySubcategories.map((subcategory, index) => (
           <SubcategoryColumn
             key={subcategory.id}
