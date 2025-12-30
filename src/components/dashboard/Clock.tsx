@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-// Clock component with champagne gold styling
+// Clock component with bright gold styling
 
 export function Clock() {
   const [time, setTime] = useState(new Date());
@@ -27,7 +27,7 @@ export function Clock() {
   };
 
   return (
-    <div className="flex items-center gap-3 text-base font-bold tracking-wide" style={{ color: 'hsl(43 70% 75%)' }}>
+    <div className="flex items-center gap-3 text-base font-bold tracking-wide" style={{ color: 'hsl(215 65% 35%)' }}>
       <span>📅 {formatDate(time)}</span>
       <span className="opacity-50">|</span>
       <span className="tabular-nums">⏰ {formatTime(time)}</span>

@@ -78,18 +78,14 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // 暖土配色
-        warm: {
-          cream: "hsl(var(--warm-cream))",
-          beige: "hsl(var(--warm-beige))",
-          sand: "hsl(var(--warm-sand))",
-          taupe: "hsl(var(--warm-taupe))",
-        },
-        // 點綴色
-        champagne: "hsl(var(--champagne-gold))",
-        bronze: "hsl(var(--bronze))",
-        burgundy: "hsl(var(--burgundy))",
-        terracotta: "hsl(var(--terracotta))",
+        // 高級配色
+        "bright-gold": "hsl(var(--bright-gold))",
+        "soft-gold": "hsl(var(--soft-gold))",
+        "navy": "hsl(var(--navy))",
+        "navy-light": "hsl(var(--navy-light))",
+        "sky-light": "hsl(var(--sky-light))",
+        "sky-soft": "hsl(var(--sky-soft))",
+        "pearl": "hsl(var(--pearl))",
       },
       borderRadius: {
         lg: "var(--radius)",
