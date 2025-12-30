@@ -1,3 +1,12 @@
+export interface ApiConfig {
+  endpoint: string;
+  method?: 'GET' | 'POST';
+  headers?: Record<string, string>;
+  body?: string;
+  displayField?: string; // JSON path to the field to display (e.g., "data.count" or "status")
+  refreshInterval?: number; // in seconds, 0 means no auto refresh
+}
+
 export interface Service {
   id: string;
   name: string;
@@ -6,6 +15,7 @@ export interface Service {
   description?: string;
   subcategory: string;
   order?: number;
+  apiConfig?: ApiConfig;
 }
 
 export interface Subcategory {

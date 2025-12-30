@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Settings, Plus, Trash2, RotateCcw, Palette, GripVertical } from 'lucide-react';
+import { Settings, Plus, Trash2, RotateCcw, Palette, GripVertical, ChevronDown, ChevronUp, Globe, Pencil } from 'lucide-react';
 import {
   DndContext,
   closestCenter,
@@ -41,8 +41,10 @@ import {
   TabsTrigger,
 } from '@/components/ui/tabs';
 import { Switch } from '@/components/ui/switch';
-import { Service, Category, Subcategory, DashboardConfig, ThemeType } from '@/types/dashboard';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { Service, Category, Subcategory, DashboardConfig, ThemeType, ApiConfig } from '@/types/dashboard';
 import { useToast } from '@/hooks/use-toast';
+import { Textarea } from '@/components/ui/textarea';
 
 interface SortableCategoryItemProps {
   category: Category;
@@ -253,13 +255,24 @@ export function ConfigEditor({
     return [...config.subcategories].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
   }, [config.subcategories]);
   
-  const [newService, setNewService] = useState({
+  const [newService, setNewService] = useState<{
+    name: string;
+    url: string;
+    icon: string;
+    description: string;
+    subcategory: string;
+    apiConfig?: ApiConfig;
+  }>({
     name: '',
     url: '',
     icon: 'globe',
     description: '',
     subcategory: config.subcategories[0]?.id || '',
   });
+  
+  const [showApiConfig, setShowApiConfig] = useState(false);
+  const [editingServiceId, setEditingServiceId] = useState<string | null>(null);
+  const [editingApiConfig, setEditingApiConfig] = useState<ApiConfig | undefined>(undefined);
   
   const [newSubcategory, setNewSubcategory] = useState({
     name: '',
@@ -420,6 +433,98 @@ export function ConfigEditor({
                     </SelectContent>
                   </Select>
                 </div>
+                
+                {/* API Configuration */}
+                <Collapsible open={showApiConfig} onOpenChange={setShowApiConfig}>
+                  <CollapsibleTrigger asChild>
+                    <Button variant="outline" className="w-full justify-between">
+                      <span className="flex items-center gap-2">
+                        <Globe className="w-4 h-4" />
+                        API 設定（選填）
+                      </span>
+                      {showApiConfig ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    </Button>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent className="space-y-3 mt-3 p-3 rounded-lg bg-muted/30">
+                    <div>
+                      <Label>API 端點</Label>
+                      <Input
+                        value={newService.apiConfig?.endpoint || ''}
+                        onChange={(e) => setNewService(prev => ({
+                          ...prev,
+                          apiConfig: { ...prev.apiConfig, endpoint: e.target.value } as ApiConfig
+                        }))}
+                        placeholder="https://api.example.com/data"
+                      />
+                    </div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <Label>方法</Label>
+                        <Select
+                          value={newService.apiConfig?.method || 'GET'}
+                          onValueChange={(value: 'GET' | 'POST') => setNewService(prev => ({
+                            ...prev,
+                            apiConfig: { ...prev.apiConfig, endpoint: prev.apiConfig?.endpoint || '', method: value }
+                          }))}
+                        >
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="GET">GET</SelectItem>
+                            <SelectItem value="POST">POST</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <Label>刷新間隔（秒）</Label>
+                        <Input
+                          type="number"
+                          min="0"
+                          value={newService.apiConfig?.refreshInterval || 0}
+                          onChange={(e) => setNewService(prev => ({
+                            ...prev,
+                            apiConfig: { ...prev.apiConfig, endpoint: prev.apiConfig?.endpoint || '', refreshInterval: parseInt(e.target.value) || 0 }
+                          }))}
+                          placeholder="0（不自動刷新）"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <Label>顯示欄位（JSON 路徑）</Label>
+                      <Input
+                        value={newService.apiConfig?.displayField || ''}
+                        onChange={(e) => setNewService(prev => ({
+                          ...prev,
+                          apiConfig: { ...prev.apiConfig, endpoint: prev.apiConfig?.endpoint || '', displayField: e.target.value }
+                        }))}
+                        placeholder="例如: data.count 或 status"
+                      />
+                      <p className="text-xs text-muted-foreground mt-1">留空顯示完整回應</p>
+                    </div>
+                    <div>
+                      <Label>Headers（JSON 格式）</Label>
+                      <Textarea
+                        value={newService.apiConfig?.headers ? JSON.stringify(newService.apiConfig.headers, null, 2) : ''}
+                        onChange={(e) => {
+                          try {
+                            const headers = e.target.value ? JSON.parse(e.target.value) : undefined;
+                            setNewService(prev => ({
+                              ...prev,
+                              apiConfig: { ...prev.apiConfig, endpoint: prev.apiConfig?.endpoint || '', headers }
+                            }));
+                          } catch {
+                            // Invalid JSON, ignore
+                          }
+                        }}
+                        placeholder='{"Authorization": "Bearer xxx"}'
+                        className="font-mono text-xs"
+                        rows={2}
+                      />
+                    </div>
+                  </CollapsibleContent>
+                </Collapsible>
+
                 <Button onClick={handleAddService} className="w-full">
                   <Plus className="w-4 h-4 mr-2" />
                   新增服務
@@ -430,16 +535,137 @@ export function ConfigEditor({
             <div className="space-y-2">
               <h4 className="font-medium">現有服務</h4>
               {config.services.map(service => (
-                <div key={service.id} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
-                  <span className="flex-1 truncate text-sm">{service.name}</span>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => onDeleteService(service.id)}
-                    className="text-destructive hover:text-destructive h-8 w-8"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
+                <div key={service.id} className="space-y-2">
+                  <div className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
+                    <span className="flex-1 truncate text-sm">
+                      {service.name}
+                      {service.apiConfig?.endpoint && (
+                        <span className="ml-2 text-xs text-primary">🔗 API</span>
+                      )}
+                    </span>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => {
+                        setEditingServiceId(editingServiceId === service.id ? null : service.id);
+                        setEditingApiConfig(service.apiConfig);
+                      }}
+                      className="h-8 w-8"
+                    >
+                      <Pencil className="w-4 h-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => onDeleteService(service.id)}
+                      className="text-destructive hover:text-destructive h-8 w-8"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                  
+                  {/* Edit API Config for existing service */}
+                  {editingServiceId === service.id && (
+                    <div className="p-3 rounded-lg bg-muted/20 space-y-3 ml-4">
+                      <h5 className="text-sm font-medium">編輯 API 設定</h5>
+                      <div>
+                        <Label className="text-xs">API 端點</Label>
+                        <Input
+                          value={editingApiConfig?.endpoint || ''}
+                          onChange={(e) => setEditingApiConfig(prev => ({
+                            ...prev,
+                            endpoint: e.target.value
+                          } as ApiConfig))}
+                          placeholder="https://api.example.com/data"
+                          className="h-8 text-sm"
+                        />
+                      </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <div>
+                          <Label className="text-xs">方法</Label>
+                          <Select
+                            value={editingApiConfig?.method || 'GET'}
+                            onValueChange={(value: 'GET' | 'POST') => setEditingApiConfig(prev => ({
+                              ...prev,
+                              endpoint: prev?.endpoint || '',
+                              method: value
+                            }))}
+                          >
+                            <SelectTrigger className="h-8">
+                              <SelectValue />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="GET">GET</SelectItem>
+                              <SelectItem value="POST">POST</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
+                        <div>
+                          <Label className="text-xs">刷新間隔（秒）</Label>
+                          <Input
+                            type="number"
+                            min="0"
+                            value={editingApiConfig?.refreshInterval || 0}
+                            onChange={(e) => setEditingApiConfig(prev => ({
+                              ...prev,
+                              endpoint: prev?.endpoint || '',
+                              refreshInterval: parseInt(e.target.value) || 0
+                            }))}
+                            className="h-8 text-sm"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <Label className="text-xs">顯示欄位</Label>
+                        <Input
+                          value={editingApiConfig?.displayField || ''}
+                          onChange={(e) => setEditingApiConfig(prev => ({
+                            ...prev,
+                            endpoint: prev?.endpoint || '',
+                            displayField: e.target.value
+                          }))}
+                          placeholder="例如: data.count"
+                          className="h-8 text-sm"
+                        />
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          onClick={() => {
+                            const apiConfig = editingApiConfig?.endpoint ? editingApiConfig : undefined;
+                            onUpdateService(service.id, { apiConfig });
+                            setEditingServiceId(null);
+                            toast({ title: 'API 設定已更新' });
+                          }}
+                        >
+                          儲存
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => {
+                            setEditingServiceId(null);
+                            setEditingApiConfig(undefined);
+                          }}
+                        >
+                          取消
+                        </Button>
+                        {service.apiConfig?.endpoint && (
+                          <Button
+                            size="sm"
+                            variant="destructive"
+                            onClick={() => {
+                              onUpdateService(service.id, { apiConfig: undefined });
+                              setEditingServiceId(null);
+                              toast({ title: 'API 設定已移除' });
+                            }}
+                          >
+                            移除 API
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
