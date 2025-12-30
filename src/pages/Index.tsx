@@ -1,6 +1,5 @@
 import { Clock } from '@/components/dashboard/Clock';
-import { SearchBar } from '@/components/dashboard/SearchBar';
-import { WeatherWidget } from '@/components/dashboard/WeatherWidget';
+import { ServiceSearchBar } from '@/components/dashboard/ServiceSearchBar';
 import { ServiceTabs } from '@/components/dashboard/ServiceTabs';
 import { ConfigEditor } from '@/components/dashboard/ConfigEditor';
 import { useDashboardConfig } from '@/hooks/useDashboardConfig';
@@ -31,7 +30,7 @@ const Index = () => {
       {/* Content */}
       <div className="relative z-10 min-h-screen p-4 md:p-6">
         {/* Header */}
-        <header className="flex justify-between items-center mb-6">
+        <header className="flex justify-between items-center mb-6 gap-4">
           <div className="flex items-center gap-4">
             <div className="rounded-xl px-4 py-2 bg-background/80 backdrop-blur border border-border/50 shadow-sm">
               <span className="text-lg font-semibold text-foreground">
@@ -39,7 +38,9 @@ const Index = () => {
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-4">
+          
+          <div className="flex items-center gap-3 flex-1 justify-end">
+            <ServiceSearchBar services={config.services} />
             <Clock />
             <ConfigEditor
               config={config}
@@ -57,23 +58,6 @@ const Index = () => {
             />
           </div>
         </header>
-
-        {/* Search */}
-        <section className="max-w-2xl mx-auto mb-6">
-          <SearchBar 
-            searchEngine={config.searchEngine} 
-            customSearchUrl={config.customSearchUrl}
-          />
-        </section>
-
-        {/* Weather */}
-        {config.showWeather && (
-          <section className="flex justify-center mb-6">
-            <div className="w-full max-w-xs">
-              <WeatherWidget location={config.weatherLocation} />
-            </div>
-          </section>
-        )}
 
         {/* Services in Tabs */}
         <main className="max-w-[1600px] mx-auto">
