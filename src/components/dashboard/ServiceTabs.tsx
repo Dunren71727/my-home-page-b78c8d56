@@ -24,22 +24,19 @@ export function ServiceTabs({ categories, subcategories, services, onReorderServ
   }
 
   return (
-    <div className="matte-card rounded-lg overflow-hidden">
+    <div className="matte-card rounded-md overflow-hidden">
       <Tabs defaultValue={sortedCategories[0]?.id} className="w-full">
-        {/* Tab header with brushed metal effect */}
-        <div className="border-b border-border brushed-metal">
+        {/* Tab header - 拉絲金屬效果 */}
+        <div className="border-b border-border bg-muted/30">
           <TabsList className="w-full justify-start h-auto p-0 bg-transparent rounded-none">
             {sortedCategories.map((category) => (
               <TabsTrigger
                 key={category.id}
                 value={category.id}
                 className="relative px-6 py-3.5 rounded-none border-b-2 border-transparent 
-                  data-[state=active]:bg-card/80 data-[state=active]:border-current 
-                  transition-all font-medium text-sm tracking-wide"
-                style={{ 
-                  color: category.color,
-                  borderBottomWidth: '2px',
-                }}
+                  data-[state=active]:bg-card data-[state=active]:border-primary
+                  data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:text-foreground
+                  transition-all duration-200 font-medium text-sm tracking-wide"
               >
                 {category.name}
               </TabsTrigger>

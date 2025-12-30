@@ -4,66 +4,75 @@
 
 @layer base {
   :root {
-    /* 暖土 - Warm cream/off-white background */
-    --background: 40 35% 96%;
-    --foreground: 25 15% 18%;
+    /* ═══════════════════════════════════════════════
+       五行火土金配色系統
+       火(Wine Red) + 土(Warm Cream) + 金(Charcoal)
+    ═══════════════════════════════════════════════ */
     
-    /* Card - slightly warmer than background */
-    --card: 38 30% 98%;
-    --card-foreground: 25 15% 18%;
+    /* 土 - 米白暖土底色 (Background) */
+    --background: 38 40% 95%;
+    --foreground: 25 20% 18%;
     
-    --popover: 38 30% 98%;
-    --popover-foreground: 25 15% 18%;
+    /* Card - 溫潤象牙白 */
+    --card: 36 35% 97%;
+    --card-foreground: 25 20% 18%;
     
-    /* 火 - Elegant burgundy/wine red accent */
-    --primary: 345 45% 35%;
-    --primary-foreground: 40 30% 98%;
+    --popover: 36 35% 97%;
+    --popover-foreground: 25 20% 18%;
     
-    /* 金水 - Deep charcoal with subtle warmth */
-    --secondary: 30 8% 22%;
-    --secondary-foreground: 40 30% 98%;
+    /* 火 - 酒紅色 (Primary Accent) */
+    --primary: 350 50% 32%;
+    --primary-foreground: 38 35% 97%;
     
-    /* Warm stone muted tones */
-    --muted: 35 20% 90%;
-    --muted-foreground: 25 12% 45%;
+    /* 金 - 深炭灰 (Secondary/Navigation) */
+    --secondary: 30 12% 18%;
+    --secondary-foreground: 38 35% 96%;
     
-    /* Slate accent for variety */
-    --accent: 30 8% 22%;
-    --accent-foreground: 40 30% 98%;
+    /* 土 - 暖石色調 */
+    --muted: 35 25% 88%;
+    --muted-foreground: 25 15% 40%;
     
-    --destructive: 0 50% 45%;
-    --destructive-foreground: 40 30% 98%;
+    /* 金 - 青銅金屬 */
+    --accent: 35 35% 45%;
+    --accent-foreground: 38 35% 97%;
     
-    /* Stone/granite-inspired borders */
-    --border: 35 15% 82%;
-    --input: 35 15% 88%;
-    --ring: 345 45% 35%;
+    --destructive: 0 55% 40%;
+    --destructive-foreground: 38 35% 97%;
     
-    /* Micro corner radius (4-8px) */
+    /* 石材邊框 */
+    --border: 35 20% 80%;
+    --input: 35 20% 85%;
+    --ring: 350 50% 32%;
+    
+    /* 微導角 6px */
     --radius: 6px;
     
-    /* Chart colors - earth & fire palette */
-    --chart-1: 345 45% 35%;
-    --chart-2: 30 8% 22%;
-    --chart-3: 25 40% 50%;
-    --chart-4: 150 20% 40%;
-    --chart-5: 215 25% 45%;
+    /* Chart - 五行配色 */
+    --chart-1: 350 50% 32%;
+    --chart-2: 30 12% 18%;
+    --chart-3: 35 35% 45%;
+    --chart-4: 25 30% 55%;
+    --chart-5: 150 15% 40%;
     
-    /* Sidebar - deep charcoal */
-    --sidebar-background: 30 8% 22%;
-    --sidebar-foreground: 40 30% 95%;
-    --sidebar-primary: 345 45% 45%;
-    --sidebar-primary-foreground: 40 30% 98%;
-    --sidebar-accent: 30 10% 28%;
-    --sidebar-accent-foreground: 40 30% 95%;
-    --sidebar-border: 30 8% 30%;
-    --sidebar-ring: 345 45% 35%;
+    /* Sidebar - 深炭灰導航 */
+    --sidebar-background: 30 12% 16%;
+    --sidebar-foreground: 38 35% 94%;
+    --sidebar-primary: 350 50% 38%;
+    --sidebar-primary-foreground: 38 35% 97%;
+    --sidebar-accent: 30 15% 24%;
+    --sidebar-accent-foreground: 38 35% 94%;
+    --sidebar-border: 30 10% 26%;
+    --sidebar-ring: 350 50% 32%;
 
-    /* Custom design tokens */
-    --warm-earth: 40 35% 96%;
-    --charcoal: 30 8% 22%;
-    --burgundy: 345 45% 35%;
-    --granite: 35 10% 70%;
+    /* ═══════════════════════════════════════════════
+       設計令牌
+    ═══════════════════════════════════════════════ */
+    --warm-cream: 38 40% 95%;
+    --charcoal: 30 12% 18%;
+    --burgundy: 350 50% 32%;
+    --bronze: 35 35% 45%;
+    --granite: 35 15% 70%;
+    --ivory: 36 35% 97%;
   }
 }
 
@@ -71,60 +80,150 @@
   * {
     @apply border-border;
   }
+  
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Roboto', 'Noto Sans TC', 'Helvetica Neue', sans-serif;
+    font-family: 'Roboto', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
     letter-spacing: 0.01em;
+    line-height: 1.6;
   }
   
-  /* Refined typography */
+  /* 俐落清晰的標題字體 */
   h1, h2, h3, h4, h5, h6 {
-    font-weight: 500;
-    letter-spacing: -0.01em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
   }
 }
 
 @layer components {
-  /* Matte stone card effect */
+  /* ═══════════════════════════════════════════════
+     霧面石材卡片
+  ═══════════════════════════════════════════════ */
   .matte-card {
     @apply bg-card border border-border;
-    box-shadow: 0 1px 3px 0 hsl(30 10% 20% / 0.05), 
-                0 1px 2px -1px hsl(30 10% 20% / 0.04);
+    box-shadow: 
+      0 1px 2px 0 hsl(30 15% 20% / 0.04),
+      0 2px 6px -1px hsl(30 15% 20% / 0.06);
   }
   
-  /* Deep charcoal header bar */
-  .charcoal-bar {
+  /* ═══════════════════════════════════════════════
+     深炭灰導航條 (金水)
+  ═══════════════════════════════════════════════ */
+  .charcoal-nav {
     background: linear-gradient(
       180deg,
-      hsl(30 8% 24%) 0%,
-      hsl(30 8% 20%) 100%
+      hsl(30 12% 20%) 0%,
+      hsl(30 12% 16%) 100%
+    );
+    box-shadow: 
+      0 2px 8px -2px hsl(30 15% 10% / 0.4),
+      inset 0 1px 0 hsl(30 10% 28% / 0.3);
+  }
+  
+  /* ═══════════════════════════════════════════════
+     酒紅色 CTA 按鈕 (火)
+  ═══════════════════════════════════════════════ */
+  .burgundy-btn {
+    @apply px-5 py-2.5 font-medium text-sm rounded-md transition-all duration-200;
+    background: linear-gradient(
+      180deg,
+      hsl(350 50% 36%) 0%,
+      hsl(350 50% 30%) 100%
+    );
+    color: hsl(38 35% 97%);
+    box-shadow: 
+      0 2px 6px -1px hsl(350 50% 25% / 0.4),
+      inset 0 1px 0 hsl(350 45% 45% / 0.3);
+  }
+  
+  .burgundy-btn:hover {
+    background: linear-gradient(
+      180deg,
+      hsl(350 50% 40%) 0%,
+      hsl(350 50% 34%) 100%
+    );
+    box-shadow: 
+      0 4px 12px -2px hsl(350 50% 25% / 0.5),
+      inset 0 1px 0 hsl(350 45% 50% / 0.3);
+    transform: translateY(-1px);
+  }
+  
+  /* ═══════════════════════════════════════════════
+     拉絲金屬效果
+  ═══════════════════════════════════════════════ */
+  .brushed-metal {
+    background: linear-gradient(
+      135deg,
+      hsl(35 15% 92%) 0%,
+      hsl(35 12% 88%) 50%,
+      hsl(35 15% 90%) 100%
     );
   }
   
-  /* Granite texture effect */
+  /* ═══════════════════════════════════════════════
+     花崗岩石材質感 (火土金)
+  ═══════════════════════════════════════════════ */
   .granite-texture {
-    background-color: hsl(35 10% 70%);
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    background-blend-mode: overlay;
+    position: relative;
+    background-color: hsl(35 15% 70%);
   }
-
-  /* Minimal hover lift - subtle and refined */
+  
+  .granite-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  
+  /* ═══════════════════════════════════════════════
+     皮革質感
+  ═══════════════════════════════════════════════ */
+  .leather-texture {
+    background: linear-gradient(
+      145deg,
+      hsl(25 25% 28%) 0%,
+      hsl(25 20% 22%) 100%
+    );
+    box-shadow: inset 0 1px 0 hsl(25 20% 35% / 0.2);
+  }
+  
+  /* ═══════════════════════════════════════════════
+     精緻懸停效果
+  ═══════════════════════════════════════════════ */
   .hover-lift {
-    @apply transition-all duration-300 ease-out;
+    @apply transition-all duration-200 ease-out;
   }
-
+  
   .hover-lift:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px -2px hsl(30 10% 20% / 0.1);
+    box-shadow: 
+      0 4px 12px -3px hsl(30 15% 20% / 0.12),
+      0 2px 4px -1px hsl(30 15% 20% / 0.08);
+  }
+  
+  /* ═══════════════════════════════════════════════
+     青銅金屬標籤
+  ═══════════════════════════════════════════════ */
+  .bronze-tag {
+    @apply px-3 py-1 text-xs font-medium rounded;
+    background: linear-gradient(
+      135deg,
+      hsl(35 40% 52%) 0%,
+      hsl(35 35% 42%) 100%
+    );
+    color: hsl(38 35% 97%);
   }
 }
 
 @layer utilities {
-  /* Subtle fade-in animation */
+  /* 淡入動畫 */
   @keyframes fade-in {
     from {
       opacity: 0;
-      transform: translateY(4px);
+      transform: translateY(6px);
     }
     to {
       opacity: 1;
@@ -133,6 +232,20 @@
   }
 
   .animate-fade-in {
-    animation: fade-in 0.3s ease-out;
+    animation: fade-in 0.35s ease-out;
+  }
+  
+  /* 微光動畫 */
+  @keyframes subtle-pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.85;
+    }
+  }
+  
+  .animate-subtle-pulse {
+    animation: subtle-pulse 2s ease-in-out infinite;
   }
 }
