@@ -32,8 +32,8 @@ export function ServiceSearchBar({ services, onServiceClick }: ServiceSearchBarP
   return (
     <div className="relative w-full max-w-md">
       <div className="relative">
-        <div className="flex items-center gap-2 px-4 py-2 rounded-md bg-secondary-foreground/10 border border-secondary-foreground/20">
-          <Search className="w-4 h-4 text-secondary-foreground/60" />
+        <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-white/20 border-2 border-white/40 backdrop-blur-sm shadow-lg">
+          <Search className="w-5 h-5 text-white" />
           <Input
             type="text"
             placeholder="搜尋服務..."
@@ -41,12 +41,12 @@ export function ServiceSearchBar({ services, onServiceClick }: ServiceSearchBarP
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-            className="flex-1 border-0 bg-transparent h-7 text-sm text-secondary-foreground placeholder:text-secondary-foreground/50 focus-visible:ring-0 focus-visible:ring-offset-0 p-0"
+            className="flex-1 border-0 bg-transparent h-7 text-sm text-white placeholder:text-white/70 focus-visible:ring-0 focus-visible:ring-offset-0 p-0"
           />
           {query && (
             <button 
               onClick={() => setQuery('')}
-              className="text-secondary-foreground/60 hover:text-secondary-foreground transition-colors"
+              className="text-white/70 hover:text-white transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
