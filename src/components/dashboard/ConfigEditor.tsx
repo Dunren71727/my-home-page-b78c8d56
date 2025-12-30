@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { Settings, Plus, Trash2, RotateCcw, Palette, GripVertical, ChevronDown, ChevronRight } from 'lucide-react';
+import { Settings, Plus, Trash2, RotateCcw, Palette, GripVertical } from 'lucide-react';
 import {
   DndContext,
   closestCenter,
@@ -40,11 +40,6 @@ import {
   TabsList,
   TabsTrigger,
 } from '@/components/ui/tabs';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
 import { Switch } from '@/components/ui/switch';
 import { Service, Category, Subcategory, DashboardConfig } from '@/types/dashboard';
 import { useToast } from '@/hooks/use-toast';
@@ -131,14 +126,15 @@ interface ConfigEditorProps {
   onReset: () => void;
 }
 
-interface SimpleSubcategoryItemProps {
+interface SortableSubcategoryItemProps {
   subcategory: Subcategory;
   colorPresets: string[];
+  categoryName: string;
   onUpdateSubcategory: (id: string, updates: Partial<Subcategory>) => void;
   onDeleteSubcategory: (id: string) => void;
 }
 
-function SimpleSubcategoryItem({ subcategory, colorPresets, onUpdateSubcategory, onDeleteSubcategory }: SimpleSubcategoryItemProps) {
+function SortableSubcategoryItem({ subcategory, colorPresets, categoryName, onUpdateSubcategory, onDeleteSubcategory }: SortableSubcategoryItemProps) {
   const {
     attributes,
     listeners,
@@ -158,26 +154,29 @@ function SimpleSubcategoryItem({ subcategory, colorPresets, onUpdateSubcategory,
     <div
       ref={setNodeRef}
       style={style}
-      className="flex items-center gap-2 p-2 rounded-lg bg-background/50 ml-6"
+      className="flex items-center gap-2 p-3 rounded-lg bg-muted/30"
     >
       <button
         {...attributes}
         {...listeners}
         className="cursor-grab hover:bg-muted/50 p-1 rounded touch-none"
       >
-        <GripVertical className="w-3 h-3 text-muted-foreground" />
+        <GripVertical className="w-4 h-4 text-muted-foreground" />
       </button>
       <div 
-        className="w-3 h-3 rounded-full shrink-0" 
+        className="w-4 h-4 rounded-full shrink-0" 
         style={{ backgroundColor: subcategory.color }}
       />
-      <span className="flex-1 truncate text-sm">{subcategory.name}</span>
+      <div className="flex-1 min-w-0">
+        <span className="truncate text-sm block">{subcategory.name}</span>
+        <span className="text-xs text-muted-foreground truncate block">{categoryName}</span>
+      </div>
       <div className="flex gap-1">
         {colorPresets.map((color) => (
           <button
             key={color}
             onClick={() => onUpdateSubcategory(subcategory.id, { color })}
-            className={`w-4 h-4 rounded border transition-all ${
+            className={`w-5 h-5 rounded border transition-all ${
               subcategory.color === color ? 'border-foreground' : 'border-transparent hover:border-muted-foreground'
             }`}
             style={{ backgroundColor: color }}
@@ -188,152 +187,11 @@ function SimpleSubcategoryItem({ subcategory, colorPresets, onUpdateSubcategory,
         variant="ghost"
         size="icon"
         onClick={() => onDeleteSubcategory(subcategory.id)}
-        className="text-destructive hover:text-destructive h-6 w-6"
+        className="text-destructive hover:text-destructive h-8 w-8"
       >
-        <Trash2 className="w-3 h-3" />
+        <Trash2 className="w-4 h-4" />
       </Button>
     </div>
-  );
-}
-
-interface SortableCategoryWithSubcategoriesProps {
-  category: Category;
-  subcategories: Subcategory[];
-  colorPresets: string[];
-  sensors: ReturnType<typeof useSensors>;
-  allSubcategories: Subcategory[];
-  onUpdateCategory: (id: string, updates: Partial<Category>) => void;
-  onDeleteCategory: (id: string) => void;
-  onUpdateSubcategory: (id: string, updates: Partial<Subcategory>) => void;
-  onDeleteSubcategory: (id: string) => void;
-  onReorderSubcategories: (subcategories: Subcategory[]) => void;
-}
-
-function SortableCategoryWithSubcategories({
-  category,
-  subcategories,
-  colorPresets,
-  sensors,
-  allSubcategories,
-  onUpdateCategory,
-  onDeleteCategory,
-  onUpdateSubcategory,
-  onDeleteSubcategory,
-  onReorderSubcategories,
-}: SortableCategoryWithSubcategoriesProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id: category.id });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    opacity: isDragging ? 0.5 : 1,
-  };
-
-  const handleSubcategoryDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-
-    if (over && active.id !== over.id) {
-      const categorySubIds = subcategories.map(s => s.id);
-      const oldIndex = categorySubIds.indexOf(active.id as string);
-      const newIndex = categorySubIds.indexOf(over.id as string);
-
-      const newCatSubs = [...subcategories];
-      const [removed] = newCatSubs.splice(oldIndex, 1);
-      newCatSubs.splice(newIndex, 0, removed);
-
-      // Update order for this category's subcategories while keeping others
-      const otherSubs = allSubcategories.filter(s => s.categoryId !== category.id);
-      const updatedCatSubs = newCatSubs.map((s, index) => ({ ...s, order: index }));
-      onReorderSubcategories([...otherSubs, ...updatedCatSubs]);
-    }
-  };
-
-  return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div
-        ref={setNodeRef}
-        style={style}
-        className="rounded-lg bg-muted/30 overflow-hidden"
-      >
-        <div className="flex items-center gap-2 p-3">
-          <button
-            {...attributes}
-            {...listeners}
-            className="cursor-grab hover:bg-muted/50 p-1 rounded touch-none"
-          >
-            <GripVertical className="w-4 h-4 text-muted-foreground" />
-          </button>
-          <CollapsibleTrigger asChild>
-            <button className="p-1 hover:bg-muted/50 rounded">
-              {isOpen ? (
-                <ChevronDown className="w-4 h-4 text-muted-foreground" />
-              ) : (
-                <ChevronRight className="w-4 h-4 text-muted-foreground" />
-              )}
-            </button>
-          </CollapsibleTrigger>
-          <div 
-            className="w-4 h-4 rounded-full shrink-0" 
-            style={{ backgroundColor: category.color }}
-          />
-          <span className="flex-1 truncate text-sm font-medium">{category.name}</span>
-          <span className="text-xs text-muted-foreground">{subcategories.length} 個子分類</span>
-          <div className="flex gap-1">
-            {colorPresets.map((color) => (
-              <button
-                key={color}
-                onClick={() => onUpdateCategory(category.id, { color })}
-                className={`w-5 h-5 rounded border transition-all ${
-                  category.color === color ? 'border-foreground' : 'border-transparent hover:border-muted-foreground'
-                }`}
-                style={{ backgroundColor: color }}
-              />
-            ))}
-          </div>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => onDeleteCategory(category.id)}
-            className="text-destructive hover:text-destructive h-8 w-8"
-          >
-            <Trash2 className="w-4 h-4" />
-          </Button>
-        </div>
-        <CollapsibleContent>
-          <div className="px-3 pb-3 space-y-1">
-            {subcategories.length > 0 ? (
-              <DndContext
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragEnd={handleSubcategoryDragEnd}
-              >
-                <SortableContext items={subcategories.map(s => s.id)} strategy={verticalListSortingStrategy}>
-                  {subcategories.map(sub => (
-                    <SimpleSubcategoryItem
-                      key={sub.id}
-                      subcategory={sub}
-                      colorPresets={colorPresets}
-                      onUpdateSubcategory={onUpdateSubcategory}
-                      onDeleteSubcategory={onDeleteSubcategory}
-                    />
-                  ))}
-                </SortableContext>
-              </DndContext>
-            ) : (
-              <p className="text-xs text-muted-foreground ml-6 py-2">尚無子分類</p>
-            )}
-          </div>
-        </CollapsibleContent>
-      </div>
-    </Collapsible>
   );
 }
 
@@ -489,9 +347,10 @@ export function ConfigEditor({
         </SheetHeader>
 
         <Tabs defaultValue="services" className="mt-6">
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="services">服務</TabsTrigger>
-            <TabsTrigger value="categories">分類管理</TabsTrigger>
+            <TabsTrigger value="subcategories">子分類</TabsTrigger>
+            <TabsTrigger value="categories">主分類</TabsTrigger>
             <TabsTrigger value="settings">設定</TabsTrigger>
           </TabsList>
 
@@ -583,43 +442,8 @@ export function ConfigEditor({
             </div>
           </TabsContent>
 
-          {/* Categories Tab - Combined */}
-          <TabsContent value="categories" className="space-y-4 mt-4">
-            {/* Add New Category */}
-            <div className="space-y-4 p-4 rounded-lg bg-muted/50">
-              <h4 className="font-medium">新增主分類</h4>
-              <div className="grid gap-3">
-                <div>
-                  <Label>名稱</Label>
-                  <Input
-                    value={newCategory.name}
-                    onChange={(e) => setNewCategory(prev => ({ ...prev, name: e.target.value }))}
-                    placeholder="分類名稱"
-                  />
-                </div>
-                <div>
-                  <Label>顏色</Label>
-                  <div className="flex gap-2 mt-2 flex-wrap">
-                    {colorPresets.map((color) => (
-                      <button
-                        key={color}
-                        onClick={() => setNewCategory(prev => ({ ...prev, color }))}
-                        className={`w-8 h-8 rounded-lg border-2 transition-all ${
-                          newCategory.color === color ? 'border-foreground scale-110' : 'border-transparent'
-                        }`}
-                        style={{ backgroundColor: color }}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <Button onClick={handleAddCategory} className="w-full">
-                  <Plus className="w-4 h-4 mr-2" />
-                  新增主分類
-                </Button>
-              </div>
-            </div>
-
-            {/* Add New Subcategory */}
+          {/* Subcategories Tab */}
+          <TabsContent value="subcategories" className="space-y-4 mt-4">
             <div className="space-y-4 p-4 rounded-lg bg-muted/50">
               <h4 className="font-medium">新增子分類</h4>
               <div className="grid gap-3">
@@ -669,9 +493,71 @@ export function ConfigEditor({
               </div>
             </div>
 
-            {/* Existing Categories with Subcategories */}
             <div className="space-y-2">
-              <h4 className="font-medium">現有分類 <span className="text-xs text-muted-foreground">(拖曳排序)</span></h4>
+              <h4 className="font-medium">現有子分類 <span className="text-xs text-muted-foreground">(拖曳排序)</span></h4>
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleSubcategoryDragEnd}
+              >
+                <SortableContext items={sortedSubcategories.map(s => s.id)} strategy={verticalListSortingStrategy}>
+                  <div className="space-y-2">
+                    {sortedSubcategories.map(sub => {
+                      const category = config.categories.find(c => c.id === sub.categoryId);
+                      return (
+                        <SortableSubcategoryItem
+                          key={sub.id}
+                          subcategory={sub}
+                          colorPresets={colorPresets}
+                          categoryName={category?.name || '未分類'}
+                          onUpdateSubcategory={onUpdateSubcategory}
+                          onDeleteSubcategory={onDeleteSubcategory}
+                        />
+                      );
+                    })}
+                  </div>
+                </SortableContext>
+              </DndContext>
+            </div>
+          </TabsContent>
+
+          {/* Categories Tab */}
+          <TabsContent value="categories" className="space-y-4 mt-4">
+            <div className="space-y-4 p-4 rounded-lg bg-muted/50">
+              <h4 className="font-medium">新增主分類</h4>
+              <div className="grid gap-3">
+                <div>
+                  <Label>名稱</Label>
+                  <Input
+                    value={newCategory.name}
+                    onChange={(e) => setNewCategory(prev => ({ ...prev, name: e.target.value }))}
+                    placeholder="分類名稱"
+                  />
+                </div>
+                <div>
+                  <Label>顏色</Label>
+                  <div className="flex gap-2 mt-2 flex-wrap">
+                    {colorPresets.map((color) => (
+                      <button
+                        key={color}
+                        onClick={() => setNewCategory(prev => ({ ...prev, color }))}
+                        className={`w-8 h-8 rounded-lg border-2 transition-all ${
+                          newCategory.color === color ? 'border-foreground scale-110' : 'border-transparent'
+                        }`}
+                        style={{ backgroundColor: color }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <Button onClick={handleAddCategory} className="w-full">
+                  <Plus className="w-4 h-4 mr-2" />
+                  新增主分類
+                </Button>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <h4 className="font-medium">現有主分類 <span className="text-xs text-muted-foreground">(拖曳排序)</span></h4>
               <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}
@@ -679,24 +565,15 @@ export function ConfigEditor({
               >
                 <SortableContext items={sortedCategories.map(c => c.id)} strategy={verticalListSortingStrategy}>
                   <div className="space-y-2">
-                    {sortedCategories.map(category => {
-                      const categorySubcategories = sortedSubcategories.filter(s => s.categoryId === category.id);
-                      return (
-                        <SortableCategoryWithSubcategories
-                          key={category.id}
-                          category={category}
-                          subcategories={categorySubcategories}
-                          colorPresets={colorPresets}
-                          sensors={sensors}
-                          onUpdateCategory={onUpdateCategory}
-                          onDeleteCategory={onDeleteCategory}
-                          onUpdateSubcategory={onUpdateSubcategory}
-                          onDeleteSubcategory={onDeleteSubcategory}
-                          onReorderSubcategories={onReorderSubcategories}
-                          allSubcategories={sortedSubcategories}
-                        />
-                      );
-                    })}
+                    {sortedCategories.map(category => (
+                      <SortableCategoryItem
+                        key={category.id}
+                        category={category}
+                        colorPresets={colorPresets}
+                        onUpdateCategory={onUpdateCategory}
+                        onDeleteCategory={onDeleteCategory}
+                      />
+                    ))}
                   </div>
                 </SortableContext>
               </DndContext>
