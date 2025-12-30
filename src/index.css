@@ -5,118 +5,114 @@
 @layer base {
   :root {
     /* ═══════════════════════════════════════════════
-       明亮清爽 暖土 + 酒紅 + 香檳金 配色系統
-       Bright & Fresh - Warm Earth + Burgundy + Champagne Gold
+       高級明亮配色 - Premium Bright
+       純淨白底 + 優雅深藍 + 亮金點綴
     ═══════════════════════════════════════════════ */
     
-    /* 明亮奶油白底色 */
-    --background: 40 50% 98%;
-    --foreground: 25 30% 20%;
+    /* 純淨白色底 */
+    --background: 210 40% 99%;
+    --foreground: 215 25% 20%;
     
-    /* Card - 純淨明亮白 */
-    --card: 45 60% 99%;
-    --card-foreground: 25 30% 20%;
+    /* Card - 純白明亮 */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 20%;
     
-    --popover: 45 60% 99%;
-    --popover-foreground: 25 30% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 20%;
     
-    /* 酒紅 - Primary (稍提亮) */
-    --primary: 345 50% 45%;
-    --primary-foreground: 45 60% 99%;
+    /* 優雅深藍 - Primary */
+    --primary: 215 65% 38%;
+    --primary-foreground: 0 0% 100%;
     
-    /* 香檳金 - Secondary (明亮) */
-    --secondary: 43 60% 58%;
-    --secondary-foreground: 25 30% 15%;
+    /* 亮金色 - Secondary */
+    --secondary: 45 85% 55%;
+    --secondary-foreground: 215 25% 15%;
     
-    /* 暖米色 - Muted (明亮) */
-    --muted: 38 40% 94%;
-    --muted-foreground: 25 20% 45%;
+    /* 淺灰藍 - Muted */
+    --muted: 210 30% 96%;
+    --muted-foreground: 215 15% 50%;
     
-    /* 古銅金 - Accent (明亮) */
-    --accent: 38 50% 52%;
-    --accent-foreground: 45 60% 99%;
+    /* 琥珀金 - Accent */
+    --accent: 38 75% 50%;
+    --accent-foreground: 0 0% 100%;
     
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;
     
-    /* 邊框 - 柔和 */
-    --border: 38 35% 88%;
-    --input: 38 35% 88%;
-    --ring: 345 50% 45%;
+    /* 邊框 - 柔和淺灰 */
+    --border: 210 25% 92%;
+    --input: 210 25% 92%;
+    --ring: 215 65% 38%;
     
     /* 現代圓角 */
     --radius: 12px;
     
     /* Chart 配色 */
-    --chart-1: 345 50% 45%;
-    --chart-2: 43 60% 58%;
-    --chart-3: 38 50% 52%;
-    --chart-4: 25 35% 50%;
-    --chart-5: 15 45% 55%;
+    --chart-1: 215 65% 38%;
+    --chart-2: 45 85% 55%;
+    --chart-3: 38 75% 50%;
+    --chart-4: 180 45% 45%;
+    --chart-5: 340 65% 55%;
     
-    /* Sidebar - 明亮暖色 */
-    --sidebar-background: 40 45% 96%;
-    --sidebar-foreground: 25 30% 20%;
-    --sidebar-primary: 345 50% 45%;
-    --sidebar-primary-foreground: 45 60% 99%;
-    --sidebar-accent: 43 60% 58%;
-    --sidebar-accent-foreground: 25 30% 15%;
-    --sidebar-border: 38 35% 88%;
-    --sidebar-ring: 345 50% 45%;
+    /* Sidebar */
+    --sidebar-background: 210 35% 98%;
+    --sidebar-foreground: 215 25% 20%;
+    --sidebar-primary: 215 65% 38%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 85% 55%;
+    --sidebar-accent-foreground: 215 25% 15%;
+    --sidebar-border: 210 25% 92%;
+    --sidebar-ring: 215 65% 38%;
 
     /* ═══════════════════════════════════════════════
-       明亮暖系跳色卡片配色
+       高級配色變數
     ═══════════════════════════════════════════════ */
-    --warm-cream: 45 70% 98%;
-    --warm-beige: 40 50% 96%;
-    --warm-sand: 38 45% 94%;
-    --warm-taupe: 35 35% 90%;
-    
-    /* 點綴色 */
-    --champagne-gold: 43 60% 58%;
-    --bronze: 38 50% 52%;
-    --burgundy: 345 50% 45%;
-    --deep-burgundy: 345 55% 35%;
-    --terracotta: 20 55% 55%;
+    --bright-gold: 45 90% 58%;
+    --soft-gold: 45 70% 75%;
+    --navy: 215 65% 38%;
+    --navy-light: 215 55% 50%;
+    --sky-light: 205 85% 95%;
+    --sky-soft: 210 60% 97%;
+    --pearl: 210 30% 98%;
   }
   
   .dark {
-    --background: 25 20% 12%;
-    --foreground: 40 40% 92%;
+    --background: 215 30% 10%;
+    --foreground: 210 30% 95%;
     
-    --card: 25 18% 16%;
-    --card-foreground: 40 40% 94%;
+    --card: 215 25% 14%;
+    --card-foreground: 210 30% 95%;
     
-    --popover: 25 18% 14%;
-    --popover-foreground: 40 40% 94%;
+    --popover: 215 25% 12%;
+    --popover-foreground: 210 30% 95%;
     
-    --primary: 345 45% 55%;
-    --primary-foreground: 45 60% 99%;
+    --primary: 215 60% 55%;
+    --primary-foreground: 0 0% 100%;
     
-    --secondary: 43 55% 60%;
-    --secondary-foreground: 25 30% 12%;
+    --secondary: 45 80% 58%;
+    --secondary-foreground: 215 25% 12%;
     
-    --muted: 25 15% 22%;
-    --muted-foreground: 35 25% 60%;
+    --muted: 215 20% 20%;
+    --muted-foreground: 210 20% 60%;
     
-    --accent: 38 48% 55%;
-    --accent-foreground: 45 60% 99%;
+    --accent: 38 70% 55%;
+    --accent-foreground: 0 0% 100%;
     
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 25 15% 28%;
-    --input: 25 15% 28%;
-    --ring: 345 45% 55%;
+    --border: 215 20% 22%;
+    --input: 215 20% 22%;
+    --ring: 215 60% 55%;
     
-    --sidebar-background: 25 20% 10%;
-    --sidebar-foreground: 40 40% 92%;
-    --sidebar-primary: 345 45% 55%;
-    --sidebar-primary-foreground: 45 60% 99%;
-    --sidebar-accent: 25 15% 20%;
-    --sidebar-accent-foreground: 40 40% 92%;
-    --sidebar-border: 25 15% 25%;
-    --sidebar-ring: 345 45% 55%;
+    --sidebar-background: 215 30% 8%;
+    --sidebar-foreground: 210 30% 95%;
+    --sidebar-primary: 215 60% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 20% 18%;
+    --sidebar-accent-foreground: 210 30% 95%;
+    --sidebar-border: 215 20% 20%;
+    --sidebar-ring: 215 60% 55%;
   }
 }
 
@@ -153,82 +149,82 @@
     @apply backdrop-blur-lg rounded-xl;
     background: linear-gradient(
       135deg,
-      hsl(var(--warm-cream)) 0%,
-      hsl(var(--card)) 100%
+      hsl(0 0% 100%) 0%,
+      hsl(var(--sky-soft)) 100%
     );
-    border: 1px solid hsl(var(--champagne-gold) / 0.25);
+    border: 1px solid hsl(var(--bright-gold) / 0.2);
     box-shadow: 
-      0 8px 32px hsl(var(--champagne-gold) / 0.08),
-      0 2px 8px hsl(var(--foreground) / 0.02),
-      inset 0 1px 0 hsl(0 0% 100% / 0.8);
+      0 8px 32px hsl(215 50% 50% / 0.06),
+      0 2px 8px hsl(215 50% 50% / 0.03),
+      inset 0 1px 0 hsl(0 0% 100% / 0.9);
   }
   
   /* ═══════════════════════════════════════════════
-     明亮暖色導航欄
+     高級深藍導航欄
   ═══════════════════════════════════════════════ */
-  .warm-nav {
+  .premium-nav {
     background: linear-gradient(
       180deg,
-      hsl(45 72% 70%) 0%,
-      hsl(43 65% 62%) 100%
+      hsl(var(--navy)) 0%,
+      hsl(215 70% 32%) 100%
     );
-    border-bottom: 3px solid hsl(var(--champagne-gold) / 0.7);
+    border-bottom: 3px solid hsl(var(--bright-gold));
     box-shadow: 
-      0 4px 20px hsl(43 60% 50% / 0.25),
-      inset 0 1px 0 hsl(0 0% 100% / 0.5);
+      0 4px 24px hsl(215 60% 30% / 0.25),
+      inset 0 1px 0 hsl(215 50% 50% / 0.2);
   }
   
   /* ═══════════════════════════════════════════════
-     酒紅色按鈕
-  ═══════════════════════════════════════════════ */
-  .burgundy-btn {
-    @apply px-6 py-3 font-bold text-base rounded-xl transition-all duration-300;
-    background: linear-gradient(
-      135deg,
-      hsl(var(--burgundy)) 0%,
-      hsl(var(--deep-burgundy)) 100%
-    );
-    color: hsl(var(--warm-cream));
-    box-shadow: 
-      0 4px 16px hsl(var(--burgundy) / 0.25),
-      inset 0 1px 0 hsl(var(--primary) / 0.3);
-  }
-  
-  .burgundy-btn:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 24px hsl(var(--burgundy) / 0.35);
-  }
-  
-  /* ═══════════════════════════════════════════════
-     香檳金按鈕
+     亮金按鈕
   ═══════════════════════════════════════════════ */
   .gold-btn {
     @apply px-6 py-3 font-bold text-base rounded-xl transition-all duration-300;
     background: linear-gradient(
       135deg,
-      hsl(var(--champagne-gold)) 0%,
-      hsl(var(--bronze)) 100%
+      hsl(var(--bright-gold)) 0%,
+      hsl(var(--accent)) 100%
     );
-    color: hsl(25 30% 15%);
+    color: hsl(215 25% 15%);
     box-shadow: 
-      0 4px 16px hsl(var(--champagne-gold) / 0.3),
-      inset 0 1px 0 hsl(0 0% 100% / 0.3);
+      0 4px 16px hsl(45 80% 50% / 0.35),
+      inset 0 1px 0 hsl(0 0% 100% / 0.4);
   }
   
   .gold-btn:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 24px hsl(var(--champagne-gold) / 0.4);
+    box-shadow: 0 8px 24px hsl(45 80% 50% / 0.45);
   }
   
   /* ═══════════════════════════════════════════════
-     明亮暖土漸層背景
+     深藍按鈕
   ═══════════════════════════════════════════════ */
-  .warm-gradient {
+  .navy-btn {
+    @apply px-6 py-3 font-bold text-base rounded-xl transition-all duration-300;
     background: linear-gradient(
-      160deg,
-      hsl(var(--warm-cream)) 0%,
-      hsl(var(--warm-beige)) 50%,
-      hsl(var(--warm-sand) / 0.7) 100%
+      135deg,
+      hsl(var(--navy)) 0%,
+      hsl(215 70% 32%) 100%
+    );
+    color: hsl(0 0% 100%);
+    box-shadow: 
+      0 4px 16px hsl(215 60% 30% / 0.3),
+      inset 0 1px 0 hsl(215 50% 55% / 0.3);
+  }
+  
+  .navy-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 24px hsl(215 60% 30% / 0.4);
+  }
+  
+  /* ═══════════════════════════════════════════════
+     明亮漸層背景
+  ═══════════════════════════════════════════════ */
+  .premium-gradient {
+    background: linear-gradient(
+      165deg,
+      hsl(0 0% 100%) 0%,
+      hsl(var(--sky-soft)) 40%,
+      hsl(var(--sky-light)) 100%
     );
   }
   
@@ -240,69 +236,69 @@
     background: linear-gradient(
       145deg,
       hsl(0 0% 100%) 0%,
-      hsl(var(--warm-cream)) 100%
+      hsl(210 50% 99%) 100%
     );
-    border: 1px solid hsl(var(--champagne-gold) / 0.2);
+    border: 1px solid hsl(var(--bright-gold) / 0.25);
     box-shadow: 
-      0 4px 16px hsl(var(--champagne-gold) / 0.06),
-      inset 0 1px 0 hsl(0 0% 100% / 0.9);
+      0 4px 16px hsl(215 50% 50% / 0.05),
+      inset 0 1px 0 hsl(0 0% 100% / 0.95);
   }
   
   .card-variant-1:hover {
-    border-color: hsl(var(--champagne-gold) / 0.5);
+    border-color: hsl(var(--bright-gold) / 0.6);
     box-shadow: 
-      0 0 24px hsl(var(--champagne-gold) / 0.3),
-      0 0 48px hsl(var(--champagne-gold) / 0.12),
-      0 8px 24px hsl(var(--champagne-gold) / 0.1),
-      inset 0 1px 0 hsl(0 0% 100% / 0.95);
+      0 0 24px hsl(var(--bright-gold) / 0.35),
+      0 0 48px hsl(var(--bright-gold) / 0.15),
+      0 8px 24px hsl(var(--bright-gold) / 0.12),
+      inset 0 1px 0 hsl(0 0% 100%);
   }
   
   .card-variant-2 {
     @apply transition-all duration-300;
     background: linear-gradient(
       145deg,
-      hsl(var(--warm-cream)) 0%,
-      hsl(var(--warm-beige)) 100%
+      hsl(var(--sky-soft)) 0%,
+      hsl(var(--pearl)) 100%
     );
-    border: 1px solid hsl(var(--bronze) / 0.15);
+    border: 1px solid hsl(var(--navy) / 0.12);
     box-shadow: 
-      0 4px 16px hsl(var(--bronze) / 0.05),
-      inset 0 1px 0 hsl(0 0% 100% / 0.8);
+      0 4px 16px hsl(215 50% 50% / 0.04),
+      inset 0 1px 0 hsl(0 0% 100% / 0.9);
   }
   
   .card-variant-2:hover {
-    border-color: hsl(var(--champagne-gold) / 0.45);
+    border-color: hsl(var(--bright-gold) / 0.5);
     box-shadow: 
-      0 0 22px hsl(var(--champagne-gold) / 0.28),
-      0 0 44px hsl(var(--champagne-gold) / 0.1),
-      0 8px 24px hsl(var(--bronze) / 0.08),
-      inset 0 1px 0 hsl(0 0% 100% / 0.9);
+      0 0 22px hsl(var(--bright-gold) / 0.32),
+      0 0 44px hsl(var(--bright-gold) / 0.12),
+      0 8px 24px hsl(var(--navy) / 0.06),
+      inset 0 1px 0 hsl(0 0% 100%);
   }
   
   .card-variant-3 {
     @apply transition-all duration-300;
     background: linear-gradient(
       145deg,
-      hsl(48 80% 99%) 0%,
-      hsl(var(--warm-cream)) 100%
+      hsl(48 100% 99%) 0%,
+      hsl(0 0% 100%) 100%
     );
-    border: 1px solid hsl(var(--champagne-gold) / 0.25);
+    border: 1px solid hsl(var(--soft-gold) / 0.4);
     box-shadow: 
-      0 4px 16px hsl(var(--champagne-gold) / 0.08),
-      inset 0 1px 0 hsl(0 0% 100% / 0.95);
+      0 4px 16px hsl(45 80% 50% / 0.06),
+      inset 0 1px 0 hsl(0 0% 100%);
   }
   
   .card-variant-3:hover {
-    border-color: hsl(var(--champagne-gold) / 0.55);
+    border-color: hsl(var(--bright-gold) / 0.65);
     box-shadow: 
-      0 0 26px hsl(var(--champagne-gold) / 0.32),
-      0 0 52px hsl(var(--champagne-gold) / 0.14),
-      0 8px 24px hsl(var(--champagne-gold) / 0.1),
-      inset 0 1px 0 hsl(0 0% 100% / 1);
+      0 0 26px hsl(var(--bright-gold) / 0.38),
+      0 0 52px hsl(var(--bright-gold) / 0.16),
+      0 8px 24px hsl(var(--bright-gold) / 0.12),
+      inset 0 1px 0 hsl(0 0% 100%);
   }
   
   /* ═══════════════════════════════════════════════
-     浮動動畫效果 + 香檳金光暈
+     浮動動畫效果 + 金色光暈
   ═══════════════════════════════════════════════ */
   .hover-lift {
     @apply transition-all duration-300 ease-out;
@@ -311,55 +307,55 @@
   .hover-lift:hover {
     transform: translateY(-4px);
     box-shadow: 
-      0 0 20px hsl(var(--champagne-gold) / 0.35),
-      0 0 40px hsl(var(--champagne-gold) / 0.15),
-      0 16px 32px hsl(var(--champagne-gold) / 0.12),
-      0 6px 12px hsl(var(--foreground) / 0.03);
+      0 0 20px hsl(var(--bright-gold) / 0.4),
+      0 0 40px hsl(var(--bright-gold) / 0.18),
+      0 16px 32px hsl(var(--bright-gold) / 0.14),
+      0 6px 12px hsl(215 50% 50% / 0.04);
   }
   
   /* ═══════════════════════════════════════════════
-     香檳金標籤
+     亮金標籤
   ═══════════════════════════════════════════════ */
   .gold-tag {
     @apply px-4 py-1.5 text-sm font-bold rounded-full;
     background: linear-gradient(
       135deg,
-      hsl(var(--champagne-gold)) 0%,
-      hsl(var(--bronze)) 100%
+      hsl(var(--bright-gold)) 0%,
+      hsl(var(--accent)) 100%
     );
-    color: hsl(25 30% 15%);
-    box-shadow: 0 2px 8px hsl(var(--champagne-gold) / 0.25);
+    color: hsl(215 25% 15%);
+    box-shadow: 0 2px 8px hsl(45 80% 50% / 0.3);
   }
   
   /* ═══════════════════════════════════════════════
-     明亮玻璃金屬效果
+     玻璃金屬效果
   ═══════════════════════════════════════════════ */
   .glass-gold {
     @apply backdrop-blur-md rounded-xl;
     background: linear-gradient(
       135deg,
-      hsl(0 0% 100% / 0.9) 0%,
-      hsl(var(--champagne-gold) / 0.15) 100%
+      hsl(0 0% 100% / 0.95) 0%,
+      hsl(var(--soft-gold) / 0.25) 100%
     );
-    border: 1px solid hsl(var(--champagne-gold) / 0.4);
+    border: 1px solid hsl(var(--bright-gold) / 0.5);
     box-shadow: 
-      inset 0 1px 0 hsl(0 0% 100% / 0.8),
-      0 4px 16px hsl(var(--champagne-gold) / 0.1);
+      inset 0 1px 0 hsl(0 0% 100% / 0.9),
+      0 4px 16px hsl(45 80% 50% / 0.15);
   }
   
   /* ═══════════════════════════════════════════════
      明亮欄位背景
   ═══════════════════════════════════════════════ */
   .column-bg-1 {
-    background: hsl(0 0% 100% / 0.7);
+    background: hsl(0 0% 100% / 0.85);
   }
   
   .column-bg-2 {
-    background: hsl(var(--warm-cream) / 0.6);
+    background: hsl(var(--sky-soft) / 0.75);
   }
   
   .column-bg-3 {
-    background: hsl(var(--warm-beige) / 0.5);
+    background: hsl(48 80% 98% / 0.7);
   }
 }
 
