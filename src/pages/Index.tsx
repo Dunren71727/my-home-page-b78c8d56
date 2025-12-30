@@ -23,25 +23,25 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* 暖土漸層背景 */}
+      {/* 明亮暖土漸層背景 */}
       <div className="fixed inset-0 warm-gradient" />
       <div 
-        className="fixed inset-0 opacity-[0.03] pointer-events-none"
+        className="fixed inset-0 opacity-[0.04] pointer-events-none"
         style={{
-          backgroundImage: `radial-gradient(circle at 20% 30%, hsl(var(--champagne-gold) / 0.3), transparent 50%),
-                            radial-gradient(circle at 80% 70%, hsl(var(--bronze) / 0.2), transparent 50%)`
+          backgroundImage: `radial-gradient(circle at 30% 20%, hsl(var(--champagne-gold) / 0.4), transparent 45%),
+                            radial-gradient(circle at 70% 80%, hsl(var(--burgundy) / 0.15), transparent 50%)`
         }}
       />
 
       {/* Content */}
       <div className="relative z-10 min-h-screen">
-        {/* 深炭灰頂部導航 */}
-        <header className="charcoal-nav text-white">
+        {/* 酒紅色頂部導航 - 明亮優雅 */}
+        <header className="warm-nav text-white">
           <div className="max-w-[1600px] mx-auto px-4 md:px-6 py-4">
             <div className="flex justify-between items-center gap-4">
               {/* 標題 - 香檳金點綴 */}
               <div className="flex items-center gap-4">
-                <h1 className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: 'hsl(43 52% 55%)' }}>
+                <h1 className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: 'hsl(43 65% 70%)' }}>
                   🏥 敦仁醫院 服務入口
                 </h1>
               </div>

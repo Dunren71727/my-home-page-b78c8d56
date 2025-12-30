@@ -57,17 +57,17 @@ export function SubcategoryColumn({ subcategory, services, onReorderServices, co
 
   if (sortedServices.length === 0) return null;
 
-  // 子分類欄位也做跳色
+  // 子分類欄位明亮跳色
   const columnVariants = [
-    'bg-warm-cream/60',
-    'bg-warm-beige/50',
-    'bg-warm-sand/40',
+    'column-bg-1',
+    'column-bg-2',
+    'column-bg-3',
   ];
   const columnBg = columnVariants[columnIndex % columnVariants.length];
 
   return (
-    <div className={`rounded-xl p-5 min-w-[300px] h-fit backdrop-blur-sm hover-lift border border-border/50 ${columnBg}`}>
-      {/* 子分類標題 - 酒紅+香檳金漸層 */}
+    <div className={`rounded-xl p-5 min-w-[300px] h-fit backdrop-blur-sm hover-lift border border-champagne/20 ${columnBg}`}>
+      {/* 子分類標題 - 酒紅+香檳金 */}
       <h3 className="font-bold text-base mb-5 pb-3 border-b-2 border-secondary/40 tracking-wide text-primary flex items-center gap-2">
         <span className="w-2 h-2 rounded-full bg-secondary" />
         {subcategory.name}

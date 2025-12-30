@@ -5,118 +5,118 @@
 @layer base {
   :root {
     /* ═══════════════════════════════════════════════
-       暖土 + 酒紅 + 香檳金 配色系統
-       Warm Earth + Burgundy + Champagne Gold
+       明亮清爽 暖土 + 酒紅 + 香檳金 配色系統
+       Bright & Fresh - Warm Earth + Burgundy + Champagne Gold
     ═══════════════════════════════════════════════ */
     
-    /* 暖土米白底色 */
-    --background: 35 35% 95%;
-    --foreground: 20 25% 15%;
+    /* 明亮奶油白底色 */
+    --background: 40 50% 98%;
+    --foreground: 25 30% 20%;
     
-    /* Card - 暖白奶油色 */
-    --card: 38 40% 97%;
-    --card-foreground: 20 25% 15%;
+    /* Card - 純淨明亮白 */
+    --card: 45 60% 99%;
+    --card-foreground: 25 30% 20%;
     
-    --popover: 38 40% 98%;
-    --popover-foreground: 20 25% 15%;
+    --popover: 45 60% 99%;
+    --popover-foreground: 25 30% 20%;
     
-    /* 酒紅 - Primary */
-    --primary: 345 55% 38%;
-    --primary-foreground: 38 40% 98%;
+    /* 酒紅 - Primary (稍提亮) */
+    --primary: 345 50% 45%;
+    --primary-foreground: 45 60% 99%;
     
-    /* 香檳金 - Secondary */
-    --secondary: 43 52% 55%;
-    --secondary-foreground: 20 25% 12%;
+    /* 香檳金 - Secondary (明亮) */
+    --secondary: 43 60% 58%;
+    --secondary-foreground: 25 30% 15%;
     
-    /* 暖土褐 - Muted */
-    --muted: 32 25% 88%;
-    --muted-foreground: 25 20% 40%;
+    /* 暖米色 - Muted (明亮) */
+    --muted: 38 40% 94%;
+    --muted-foreground: 25 20% 45%;
     
-    /* 古銅金 - Accent */
-    --accent: 35 45% 48%;
-    --accent-foreground: 38 40% 98%;
+    /* 古銅金 - Accent (明亮) */
+    --accent: 38 50% 52%;
+    --accent-foreground: 45 60% 99%;
     
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;
     
-    /* 邊框 */
-    --border: 32 30% 82%;
-    --input: 32 30% 82%;
-    --ring: 345 55% 38%;
+    /* 邊框 - 柔和 */
+    --border: 38 35% 88%;
+    --input: 38 35% 88%;
+    --ring: 345 50% 45%;
     
     /* 現代圓角 */
     --radius: 12px;
     
     /* Chart 配色 */
-    --chart-1: 345 55% 38%;
-    --chart-2: 43 52% 55%;
-    --chart-3: 35 45% 48%;
-    --chart-4: 25 35% 45%;
-    --chart-5: 15 40% 55%;
+    --chart-1: 345 50% 45%;
+    --chart-2: 43 60% 58%;
+    --chart-3: 38 50% 52%;
+    --chart-4: 25 35% 50%;
+    --chart-5: 15 45% 55%;
     
-    /* Sidebar */
-    --sidebar-background: 20 20% 18%;
-    --sidebar-foreground: 38 40% 95%;
-    --sidebar-primary: 345 55% 42%;
-    --sidebar-primary-foreground: 38 40% 98%;
-    --sidebar-accent: 43 52% 55%;
-    --sidebar-accent-foreground: 20 25% 12%;
-    --sidebar-border: 25 15% 28%;
-    --sidebar-ring: 345 55% 42%;
+    /* Sidebar - 明亮暖色 */
+    --sidebar-background: 40 45% 96%;
+    --sidebar-foreground: 25 30% 20%;
+    --sidebar-primary: 345 50% 45%;
+    --sidebar-primary-foreground: 45 60% 99%;
+    --sidebar-accent: 43 60% 58%;
+    --sidebar-accent-foreground: 25 30% 15%;
+    --sidebar-border: 38 35% 88%;
+    --sidebar-ring: 345 50% 45%;
 
     /* ═══════════════════════════════════════════════
-       暖系跳色卡片配色
+       明亮暖系跳色卡片配色
     ═══════════════════════════════════════════════ */
-    --warm-cream: 38 45% 96%;
-    --warm-beige: 35 35% 92%;
-    --warm-sand: 32 30% 88%;
-    --warm-taupe: 28 25% 82%;
+    --warm-cream: 45 70% 98%;
+    --warm-beige: 40 50% 96%;
+    --warm-sand: 38 45% 94%;
+    --warm-taupe: 35 35% 90%;
     
     /* 點綴色 */
-    --champagne-gold: 43 52% 55%;
-    --bronze: 35 45% 48%;
-    --burgundy: 345 55% 38%;
-    --deep-burgundy: 345 60% 28%;
-    --terracotta: 18 50% 50%;
+    --champagne-gold: 43 60% 58%;
+    --bronze: 38 50% 52%;
+    --burgundy: 345 50% 45%;
+    --deep-burgundy: 345 55% 35%;
+    --terracotta: 20 55% 55%;
   }
   
   .dark {
-    --background: 20 18% 10%;
-    --foreground: 35 30% 90%;
+    --background: 25 20% 12%;
+    --foreground: 40 40% 92%;
     
-    --card: 20 15% 14%;
-    --card-foreground: 35 30% 92%;
+    --card: 25 18% 16%;
+    --card-foreground: 40 40% 94%;
     
-    --popover: 20 15% 12%;
-    --popover-foreground: 35 30% 92%;
+    --popover: 25 18% 14%;
+    --popover-foreground: 40 40% 94%;
     
-    --primary: 345 50% 50%;
-    --primary-foreground: 38 40% 98%;
+    --primary: 345 45% 55%;
+    --primary-foreground: 45 60% 99%;
     
-    --secondary: 43 48% 58%;
-    --secondary-foreground: 20 25% 10%;
+    --secondary: 43 55% 60%;
+    --secondary-foreground: 25 30% 12%;
     
-    --muted: 20 12% 20%;
-    --muted-foreground: 30 20% 55%;
+    --muted: 25 15% 22%;
+    --muted-foreground: 35 25% 60%;
     
-    --accent: 35 42% 52%;
-    --accent-foreground: 38 40% 98%;
+    --accent: 38 48% 55%;
+    --accent-foreground: 45 60% 99%;
     
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 20 12% 25%;
-    --input: 20 12% 25%;
-    --ring: 345 50% 50%;
+    --border: 25 15% 28%;
+    --input: 25 15% 28%;
+    --ring: 345 45% 55%;
     
-    --sidebar-background: 20 18% 6%;
-    --sidebar-foreground: 35 30% 90%;
-    --sidebar-primary: 345 50% 50%;
-    --sidebar-primary-foreground: 38 40% 98%;
-    --sidebar-accent: 20 12% 18%;
-    --sidebar-accent-foreground: 35 30% 90%;
-    --sidebar-border: 20 12% 22%;
-    --sidebar-ring: 345 50% 50%;
+    --sidebar-background: 25 20% 10%;
+    --sidebar-foreground: 40 40% 92%;
+    --sidebar-primary: 345 45% 55%;
+    --sidebar-primary-foreground: 45 60% 99%;
+    --sidebar-accent: 25 15% 20%;
+    --sidebar-accent-foreground: 40 40% 92%;
+    --sidebar-border: 25 15% 25%;
+    --sidebar-ring: 345 45% 55%;
   }
 }
 
@@ -147,33 +147,35 @@
 
 @layer components {
   /* ═══════════════════════════════════════════════
-     玻璃擬態卡片 - 暖色調
+     明亮玻璃卡片
   ═══════════════════════════════════════════════ */
   .glass-card {
     @apply backdrop-blur-lg rounded-xl;
     background: linear-gradient(
       135deg,
-      hsl(var(--warm-cream) / 0.95) 0%,
-      hsl(var(--warm-beige) / 0.9) 100%
+      hsl(var(--warm-cream)) 0%,
+      hsl(var(--card)) 100%
     );
-    border: 1px solid hsl(var(--champagne-gold) / 0.3);
+    border: 1px solid hsl(var(--champagne-gold) / 0.25);
     box-shadow: 
-      0 8px 32px hsl(var(--bronze) / 0.08),
-      0 4px 12px hsl(var(--foreground) / 0.03),
-      inset 0 1px 0 hsl(var(--champagne-gold) / 0.15);
+      0 8px 32px hsl(var(--champagne-gold) / 0.08),
+      0 2px 8px hsl(var(--foreground) / 0.02),
+      inset 0 1px 0 hsl(0 0% 100% / 0.8);
   }
   
   /* ═══════════════════════════════════════════════
-     深炭灰導航欄
+     明亮暖色導航欄
   ═══════════════════════════════════════════════ */
-  .charcoal-nav {
+  .warm-nav {
     background: linear-gradient(
       180deg,
-      hsl(20 18% 18%) 0%,
-      hsl(20 20% 14%) 100%
+      hsl(var(--burgundy)) 0%,
+      hsl(var(--deep-burgundy)) 100%
     );
-    border-bottom: 2px solid hsl(var(--champagne-gold) / 0.4);
-    box-shadow: 0 4px 24px hsl(var(--foreground) / 0.15);
+    border-bottom: 3px solid hsl(var(--champagne-gold) / 0.6);
+    box-shadow: 
+      0 4px 20px hsl(var(--burgundy) / 0.2),
+      inset 0 1px 0 hsl(var(--burgundy) / 0.3);
   }
   
   /* ═══════════════════════════════════════════════
@@ -188,13 +190,13 @@
     );
     color: hsl(var(--warm-cream));
     box-shadow: 
-      0 4px 16px hsl(var(--burgundy) / 0.35),
+      0 4px 16px hsl(var(--burgundy) / 0.25),
       inset 0 1px 0 hsl(var(--primary) / 0.3);
   }
   
   .burgundy-btn:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 24px hsl(var(--burgundy) / 0.45);
+    box-shadow: 0 8px 24px hsl(var(--burgundy) / 0.35);
   }
   
   /* ═══════════════════════════════════════════════
@@ -207,66 +209,66 @@
       hsl(var(--champagne-gold)) 0%,
       hsl(var(--bronze)) 100%
     );
-    color: hsl(20 25% 12%);
+    color: hsl(25 30% 15%);
     box-shadow: 
-      0 4px 16px hsl(var(--champagne-gold) / 0.35),
-      inset 0 1px 0 hsl(var(--champagne-gold) / 0.5);
+      0 4px 16px hsl(var(--champagne-gold) / 0.3),
+      inset 0 1px 0 hsl(0 0% 100% / 0.3);
   }
   
   .gold-btn:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 24px hsl(var(--champagne-gold) / 0.5);
+    box-shadow: 0 8px 24px hsl(var(--champagne-gold) / 0.4);
   }
   
   /* ═══════════════════════════════════════════════
-     暖土漸層背景
+     明亮暖土漸層背景
   ═══════════════════════════════════════════════ */
   .warm-gradient {
     background: linear-gradient(
-      135deg,
+      160deg,
       hsl(var(--warm-cream)) 0%,
-      hsl(var(--warm-beige)) 40%,
-      hsl(var(--warm-sand) / 0.6) 100%
+      hsl(var(--warm-beige)) 50%,
+      hsl(var(--warm-sand) / 0.7) 100%
     );
   }
   
   /* ═══════════════════════════════════════════════
-     跳色卡片 - 奇數偶數不同
+     明亮跳色卡片
   ═══════════════════════════════════════════════ */
   .card-variant-1 {
     background: linear-gradient(
       145deg,
-      hsl(var(--warm-cream)) 0%,
-      hsl(var(--warm-beige) / 0.95) 100%
+      hsl(0 0% 100%) 0%,
+      hsl(var(--warm-cream)) 100%
     );
-    border: 1px solid hsl(var(--champagne-gold) / 0.25);
+    border: 1px solid hsl(var(--champagne-gold) / 0.2);
     box-shadow: 
-      0 4px 16px hsl(var(--bronze) / 0.08),
-      inset 0 1px 0 hsl(var(--champagne-gold) / 0.2);
+      0 4px 16px hsl(var(--champagne-gold) / 0.06),
+      inset 0 1px 0 hsl(0 0% 100% / 0.9);
   }
   
   .card-variant-2 {
     background: linear-gradient(
       145deg,
-      hsl(var(--warm-beige)) 0%,
-      hsl(var(--warm-sand) / 0.9) 100%
+      hsl(var(--warm-cream)) 0%,
+      hsl(var(--warm-beige)) 100%
     );
-    border: 1px solid hsl(var(--bronze) / 0.2);
+    border: 1px solid hsl(var(--bronze) / 0.15);
     box-shadow: 
-      0 4px 16px hsl(var(--champagne-gold) / 0.1),
-      inset 0 1px 0 hsl(var(--warm-cream) / 0.5);
+      0 4px 16px hsl(var(--bronze) / 0.05),
+      inset 0 1px 0 hsl(0 0% 100% / 0.8);
   }
   
   .card-variant-3 {
     background: linear-gradient(
       145deg,
-      hsl(38 50% 98%) 0%,
-      hsl(var(--warm-cream) / 0.95) 100%
+      hsl(48 80% 99%) 0%,
+      hsl(var(--warm-cream)) 100%
     );
-    border: 1px solid hsl(var(--champagne-gold) / 0.35);
+    border: 1px solid hsl(var(--champagne-gold) / 0.25);
     box-shadow: 
-      0 4px 16px hsl(var(--bronze) / 0.06),
-      inset 0 1px 0 hsl(var(--champagne-gold) / 0.25);
+      0 4px 16px hsl(var(--champagne-gold) / 0.08),
+      inset 0 1px 0 hsl(0 0% 100% / 0.95);
   }
   
   /* ═══════════════════════════════════════════════
@@ -279,8 +281,8 @@
   .hover-lift:hover {
     transform: translateY(-4px);
     box-shadow: 
-      0 16px 32px hsl(var(--bronze) / 0.12),
-      0 6px 12px hsl(var(--foreground) / 0.04);
+      0 16px 32px hsl(var(--champagne-gold) / 0.1),
+      0 6px 12px hsl(var(--foreground) / 0.03);
   }
   
   /* ═══════════════════════════════════════════════
@@ -293,34 +295,39 @@
       hsl(var(--champagne-gold)) 0%,
       hsl(var(--bronze)) 100%
     );
-    color: hsl(20 25% 12%);
-    box-shadow: 0 2px 8px hsl(var(--champagne-gold) / 0.3);
+    color: hsl(25 30% 15%);
+    box-shadow: 0 2px 8px hsl(var(--champagne-gold) / 0.25);
   }
   
   /* ═══════════════════════════════════════════════
-     香檳金邊框
-  ═══════════════════════════════════════════════ */
-  .gold-border {
-    border: 2px solid transparent;
-    background: 
-      linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
-      linear-gradient(135deg, hsl(var(--champagne-gold)), hsl(var(--bronze)), hsl(var(--champagne-gold))) border-box;
-  }
-  
-  /* ═══════════════════════════════════════════════
-     玻璃金屬效果
+     明亮玻璃金屬效果
   ═══════════════════════════════════════════════ */
   .glass-gold {
     @apply backdrop-blur-md rounded-xl;
     background: linear-gradient(
       135deg,
-      hsl(var(--champagne-gold) / 0.15) 0%,
-      hsl(var(--bronze) / 0.1) 100%
+      hsl(0 0% 100% / 0.9) 0%,
+      hsl(var(--champagne-gold) / 0.15) 100%
     );
-    border: 1px solid hsl(var(--champagne-gold) / 0.3);
+    border: 1px solid hsl(var(--champagne-gold) / 0.4);
     box-shadow: 
-      inset 0 1px 0 hsl(var(--champagne-gold) / 0.2),
-      0 4px 16px hsl(var(--bronze) / 0.1);
+      inset 0 1px 0 hsl(0 0% 100% / 0.8),
+      0 4px 16px hsl(var(--champagne-gold) / 0.1);
+  }
+  
+  /* ═══════════════════════════════════════════════
+     明亮欄位背景
+  ═══════════════════════════════════════════════ */
+  .column-bg-1 {
+    background: hsl(0 0% 100% / 0.7);
+  }
+  
+  .column-bg-2 {
+    background: hsl(var(--warm-cream) / 0.6);
+  }
+  
+  .column-bg-3 {
+    background: hsl(var(--warm-beige) / 0.5);
   }
 }
 
@@ -344,7 +351,7 @@
   /* 金光閃爍 */
   @keyframes gold-shimmer {
     0%, 100% {
-      opacity: 0.6;
+      opacity: 0.7;
     }
     50% {
       opacity: 1;
