@@ -48,13 +48,24 @@ const iconMap: Record<string, LucideIcon> = {
   'heart-pulse': HeartPulse,
 };
 
-// 隨機繽紛色彩
-const colorVariants = [
-  'from-vibrant-orange to-vibrant-pink',
-  'from-vibrant-blue to-vibrant-purple', 
-  'from-vibrant-cyan to-vibrant-blue',
-  'from-vibrant-purple to-vibrant-pink',
-  'from-vibrant-green to-vibrant-cyan',
+// 暖色系跳色 - 酒紅、香檳金、古銅金循環
+const cardVariants = [
+  'card-variant-1',
+  'card-variant-2',
+  'card-variant-3',
+];
+
+// 圖標背景色 - 酒紅與香檳金交替
+const iconBgVariants = [
+  'bg-primary/15',  // 酒紅淡色
+  'bg-secondary/20', // 香檳金淡色
+  'bg-accent/15',    // 古銅金淡色
+];
+
+const iconColorVariants = [
+  'text-primary',    // 酒紅
+  'text-secondary',  // 香檳金
+  'text-accent',     // 古銅金
 ];
 
 export function DraggableServiceCard({ service, index = 0 }: DraggableServiceCardProps) {
@@ -74,18 +85,20 @@ export function DraggableServiceCard({ service, index = 0 }: DraggableServiceCar
   } as React.CSSProperties;
 
   const IconComponent = iconMap[service.icon] || Globe;
-  const colorVariant = colorVariants[index % colorVariants.length];
+  const cardVariant = cardVariants[index % cardVariants.length];
+  const iconBg = iconBgVariants[index % iconBgVariants.length];
+  const iconColor = iconColorVariants[index % iconColorVariants.length];
 
   return (
     <div
       ref={setNodeRef}
       style={style}
-      className={`group relative rounded-xl p-4 transition-all duration-300 cursor-pointer animate-fade-up
+      className={`group relative rounded-xl p-4 transition-all duration-300 cursor-pointer animate-fade-up hover-lift
         ${isDragging 
-          ? 'opacity-70 z-50 shadow-2xl scale-105 rotate-2' 
-          : 'hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02]'
+          ? 'opacity-70 z-50 shadow-2xl scale-105 rotate-1' 
+          : ''
         }
-        bg-card border-2 border-border/50 hover:border-primary/50
+        ${cardVariant}
       `}
     >
       {/* 拖曳手柄 */}
@@ -104,9 +117,9 @@ export function DraggableServiceCard({ service, index = 0 }: DraggableServiceCar
         className="flex items-start gap-4 pl-5"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* 圖標 - 繽紛漸層背景 */}
-        <div className={`p-3 rounded-xl shrink-0 bg-gradient-to-br ${colorVariant} shadow-lg`}>
-          <IconComponent className="w-6 h-6 text-white" />
+        {/* 圖標 - 暖色系背景 */}
+        <div className={`p-3 rounded-xl shrink-0 ${iconBg} transition-colors duration-300 group-hover:scale-105`}>
+          <IconComponent className={`w-6 h-6 ${iconColor}`} />
         </div>
         
         <div className="flex-1 min-w-0">
@@ -114,7 +127,7 @@ export function DraggableServiceCard({ service, index = 0 }: DraggableServiceCar
             <h3 className="font-bold text-base text-foreground group-hover:text-primary transition-colors">
               {service.name}
             </h3>
-            <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-60 transition-all duration-200 text-primary flex-shrink-0" />
+            <ExternalLink className="w-4 h-4 opacity-0 group-hover:opacity-60 transition-all duration-200 text-secondary flex-shrink-0" />
           </div>
           {service.description && (
             <p className="text-sm text-muted-foreground truncate mt-1.5">

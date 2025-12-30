@@ -41,12 +41,13 @@ export function CategoryTabContent({
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {categorySubcategories.map(subcategory => (
+        {categorySubcategories.map((subcategory, index) => (
           <SubcategoryColumn
             key={subcategory.id}
             subcategory={subcategory}
             services={getServicesForSubcategory(subcategory.id)}
             onReorderServices={(reordered) => handleReorderInSubcategory(subcategory.id, reordered)}
+            columnIndex={index}
           />
         ))}
       </div>

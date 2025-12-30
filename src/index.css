@@ -5,119 +5,118 @@
 @layer base {
   :root {
     /* ═══════════════════════════════════════════════
-       繽紛活力先進配色系統
-       Vibrant + Energetic + Modern
+       暖土 + 酒紅 + 香檳金 配色系統
+       Warm Earth + Burgundy + Champagne Gold
     ═══════════════════════════════════════════════ */
     
-    /* 明亮活力底色 */
-    --background: 220 30% 97%;
-    --foreground: 240 20% 15%;
+    /* 暖土米白底色 */
+    --background: 35 35% 95%;
+    --foreground: 20 25% 15%;
     
-    /* Card - 純淨白色 */
-    --card: 0 0% 100%;
-    --card-foreground: 240 20% 15%;
+    /* Card - 暖白奶油色 */
+    --card: 38 40% 97%;
+    --card-foreground: 20 25% 15%;
     
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 20% 15%;
+    --popover: 38 40% 98%;
+    --popover-foreground: 20 25% 15%;
     
-    /* 活力橘紅 - Primary */
-    --primary: 18 95% 55%;
-    --primary-foreground: 0 0% 100%;
+    /* 酒紅 - Primary */
+    --primary: 345 55% 38%;
+    --primary-foreground: 38 40% 98%;
     
-    /* 現代靛藍 - Secondary */
-    --secondary: 235 75% 55%;
-    --secondary-foreground: 0 0% 100%;
+    /* 香檳金 - Secondary */
+    --secondary: 43 52% 55%;
+    --secondary-foreground: 20 25% 12%;
     
-    /* 柔和輔助 */
-    --muted: 220 20% 92%;
-    --muted-foreground: 230 15% 45%;
+    /* 暖土褐 - Muted */
+    --muted: 32 25% 88%;
+    --muted-foreground: 25 20% 40%;
     
-    /* 青綠活力 - Accent */
-    --accent: 175 80% 42%;
-    --accent-foreground: 0 0% 100%;
+    /* 古銅金 - Accent */
+    --accent: 35 45% 48%;
+    --accent-foreground: 38 40% 98%;
     
-    --destructive: 0 85% 55%;
+    --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;
     
     /* 邊框 */
-    --border: 225 20% 88%;
-    --input: 225 20% 88%;
-    --ring: 18 95% 55%;
+    --border: 32 30% 82%;
+    --input: 32 30% 82%;
+    --ring: 345 55% 38%;
     
     /* 現代圓角 */
     --radius: 12px;
     
-    /* Chart 繽紛配色 */
-    --chart-1: 18 95% 55%;
-    --chart-2: 235 75% 55%;
-    --chart-3: 175 80% 42%;
-    --chart-4: 280 75% 60%;
-    --chart-5: 45 95% 55%;
+    /* Chart 配色 */
+    --chart-1: 345 55% 38%;
+    --chart-2: 43 52% 55%;
+    --chart-3: 35 45% 48%;
+    --chart-4: 25 35% 45%;
+    --chart-5: 15 40% 55%;
     
     /* Sidebar */
-    --sidebar-background: 235 70% 50%;
-    --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 18 95% 55%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 235 60% 60%;
-    --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 235 50% 60%;
-    --sidebar-ring: 18 95% 55%;
+    --sidebar-background: 20 20% 18%;
+    --sidebar-foreground: 38 40% 95%;
+    --sidebar-primary: 345 55% 42%;
+    --sidebar-primary-foreground: 38 40% 98%;
+    --sidebar-accent: 43 52% 55%;
+    --sidebar-accent-foreground: 20 25% 12%;
+    --sidebar-border: 25 15% 28%;
+    --sidebar-ring: 345 55% 42%;
 
     /* ═══════════════════════════════════════════════
-       繽紛活力色彩
+       暖系跳色卡片配色
     ═══════════════════════════════════════════════ */
-    --vibrant-orange: 18 95% 55%;
-    --vibrant-blue: 235 75% 55%;
-    --vibrant-cyan: 175 80% 42%;
-    --vibrant-purple: 280 75% 60%;
-    --vibrant-yellow: 45 95% 55%;
-    --vibrant-pink: 330 85% 60%;
-    --vibrant-green: 155 75% 45%;
+    --warm-cream: 38 45% 96%;
+    --warm-beige: 35 35% 92%;
+    --warm-sand: 32 30% 88%;
+    --warm-taupe: 28 25% 82%;
     
-    /* 漸層色 */
-    --gradient-start: 280 75% 60%;
-    --gradient-mid: 235 75% 55%;
-    --gradient-end: 18 95% 55%;
+    /* 點綴色 */
+    --champagne-gold: 43 52% 55%;
+    --bronze: 35 45% 48%;
+    --burgundy: 345 55% 38%;
+    --deep-burgundy: 345 60% 28%;
+    --terracotta: 18 50% 50%;
   }
   
   .dark {
-    --background: 230 25% 8%;
-    --foreground: 210 30% 95%;
+    --background: 20 18% 10%;
+    --foreground: 35 30% 90%;
     
-    --card: 230 20% 12%;
-    --card-foreground: 210 30% 95%;
+    --card: 20 15% 14%;
+    --card-foreground: 35 30% 92%;
     
-    --popover: 230 20% 10%;
-    --popover-foreground: 210 30% 95%;
+    --popover: 20 15% 12%;
+    --popover-foreground: 35 30% 92%;
     
-    --primary: 18 90% 60%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 345 50% 50%;
+    --primary-foreground: 38 40% 98%;
     
-    --secondary: 235 70% 65%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 43 48% 58%;
+    --secondary-foreground: 20 25% 10%;
     
-    --muted: 230 15% 18%;
-    --muted-foreground: 210 20% 60%;
+    --muted: 20 12% 20%;
+    --muted-foreground: 30 20% 55%;
     
-    --accent: 175 75% 50%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 35 42% 52%;
+    --accent-foreground: 38 40% 98%;
     
-    --destructive: 0 75% 55%;
+    --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
     
-    --border: 230 15% 22%;
-    --input: 230 15% 22%;
-    --ring: 18 90% 60%;
+    --border: 20 12% 25%;
+    --input: 20 12% 25%;
+    --ring: 345 50% 50%;
     
-    --sidebar-background: 230 25% 6%;
-    --sidebar-foreground: 210 30% 95%;
-    --sidebar-primary: 18 90% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 230 20% 15%;
-    --sidebar-accent-foreground: 210 30% 95%;
-    --sidebar-border: 230 15% 18%;
-    --sidebar-ring: 18 90% 60%;
+    --sidebar-background: 20 18% 6%;
+    --sidebar-foreground: 35 30% 90%;
+    --sidebar-primary: 345 50% 50%;
+    --sidebar-primary-foreground: 38 40% 98%;
+    --sidebar-accent: 20 12% 18%;
+    --sidebar-accent-foreground: 35 30% 90%;
+    --sidebar-border: 20 12% 22%;
+    --sidebar-ring: 345 50% 50%;
   }
 }
 
@@ -128,7 +127,7 @@
   
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Roboto', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Noto Sans TC', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
     font-size: 18px;
     letter-spacing: 0.01em;
     line-height: 1.6;
@@ -148,152 +147,184 @@
 
 @layer components {
   /* ═══════════════════════════════════════════════
-     玻璃擬態卡片
+     玻璃擬態卡片 - 暖色調
   ═══════════════════════════════════════════════ */
   .glass-card {
-    @apply bg-card/95 backdrop-blur-lg border border-border/50 rounded-xl;
-    box-shadow: 
-      0 8px 32px hsl(var(--vibrant-purple) / 0.08),
-      0 4px 12px hsl(var(--foreground) / 0.04);
-  }
-  
-  /* ═══════════════════════════════════════════════
-     漸層導航欄
-  ═══════════════════════════════════════════════ */
-  .gradient-nav {
+    @apply backdrop-blur-lg rounded-xl;
     background: linear-gradient(
       135deg,
-      hsl(var(--vibrant-blue)) 0%,
-      hsl(var(--vibrant-purple)) 100%
+      hsl(var(--warm-cream) / 0.95) 0%,
+      hsl(var(--warm-beige) / 0.9) 100%
     );
-    box-shadow: 0 4px 24px hsl(var(--vibrant-purple) / 0.3);
+    border: 1px solid hsl(var(--champagne-gold) / 0.3);
+    box-shadow: 
+      0 8px 32px hsl(var(--bronze) / 0.08),
+      0 4px 12px hsl(var(--foreground) / 0.03),
+      inset 0 1px 0 hsl(var(--champagne-gold) / 0.15);
   }
   
   /* ═══════════════════════════════════════════════
-     活力按鈕
+     深炭灰導航欄
   ═══════════════════════════════════════════════ */
-  .vibrant-btn {
+  .charcoal-nav {
+    background: linear-gradient(
+      180deg,
+      hsl(20 18% 18%) 0%,
+      hsl(20 20% 14%) 100%
+    );
+    border-bottom: 2px solid hsl(var(--champagne-gold) / 0.4);
+    box-shadow: 0 4px 24px hsl(var(--foreground) / 0.15);
+  }
+  
+  /* ═══════════════════════════════════════════════
+     酒紅色按鈕
+  ═══════════════════════════════════════════════ */
+  .burgundy-btn {
     @apply px-6 py-3 font-bold text-base rounded-xl transition-all duration-300;
     background: linear-gradient(
       135deg,
-      hsl(var(--vibrant-orange)) 0%,
-      hsl(var(--vibrant-pink)) 100%
+      hsl(var(--burgundy)) 0%,
+      hsl(var(--deep-burgundy)) 100%
     );
-    color: white;
-    box-shadow: 0 4px 20px hsl(var(--vibrant-orange) / 0.4);
+    color: hsl(var(--warm-cream));
+    box-shadow: 
+      0 4px 16px hsl(var(--burgundy) / 0.35),
+      inset 0 1px 0 hsl(var(--primary) / 0.3);
   }
   
-  .vibrant-btn:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 30px hsl(var(--vibrant-orange) / 0.5);
+  .burgundy-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 24px hsl(var(--burgundy) / 0.45);
   }
   
   /* ═══════════════════════════════════════════════
-     彩虹漸層背景
+     香檳金按鈕
   ═══════════════════════════════════════════════ */
-  .rainbow-gradient {
+  .gold-btn {
+    @apply px-6 py-3 font-bold text-base rounded-xl transition-all duration-300;
     background: linear-gradient(
       135deg,
-      hsl(var(--vibrant-cyan) / 0.15) 0%,
-      hsl(var(--vibrant-blue) / 0.1) 25%,
-      hsl(var(--vibrant-purple) / 0.1) 50%,
-      hsl(var(--vibrant-pink) / 0.1) 75%,
-      hsl(var(--vibrant-orange) / 0.15) 100%
+      hsl(var(--champagne-gold)) 0%,
+      hsl(var(--bronze)) 100%
+    );
+    color: hsl(20 25% 12%);
+    box-shadow: 
+      0 4px 16px hsl(var(--champagne-gold) / 0.35),
+      inset 0 1px 0 hsl(var(--champagne-gold) / 0.5);
+  }
+  
+  .gold-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 24px hsl(var(--champagne-gold) / 0.5);
+  }
+  
+  /* ═══════════════════════════════════════════════
+     暖土漸層背景
+  ═══════════════════════════════════════════════ */
+  .warm-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--warm-cream)) 0%,
+      hsl(var(--warm-beige)) 40%,
+      hsl(var(--warm-sand) / 0.6) 100%
     );
   }
   
   /* ═══════════════════════════════════════════════
-     霓虹卡片
+     跳色卡片 - 奇數偶數不同
   ═══════════════════════════════════════════════ */
-  .neon-card {
-    @apply bg-card rounded-xl transition-all duration-300;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-    position: relative;
-  }
-  
-  .neon-card::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
+  .card-variant-1 {
     background: linear-gradient(
-      135deg,
-      hsl(var(--vibrant-cyan)),
-      hsl(var(--vibrant-blue)),
-      hsl(var(--vibrant-purple)),
-      hsl(var(--vibrant-pink))
+      145deg,
+      hsl(var(--warm-cream)) 0%,
+      hsl(var(--warm-beige) / 0.95) 100%
     );
-    border-radius: calc(var(--radius) + 2px);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    border: 1px solid hsl(var(--champagne-gold) / 0.25);
+    box-shadow: 
+      0 4px 16px hsl(var(--bronze) / 0.08),
+      inset 0 1px 0 hsl(var(--champagne-gold) / 0.2);
   }
   
-  .neon-card:hover::before {
-    opacity: 1;
+  .card-variant-2 {
+    background: linear-gradient(
+      145deg,
+      hsl(var(--warm-beige)) 0%,
+      hsl(var(--warm-sand) / 0.9) 100%
+    );
+    border: 1px solid hsl(var(--bronze) / 0.2);
+    box-shadow: 
+      0 4px 16px hsl(var(--champagne-gold) / 0.1),
+      inset 0 1px 0 hsl(var(--warm-cream) / 0.5);
+  }
+  
+  .card-variant-3 {
+    background: linear-gradient(
+      145deg,
+      hsl(38 50% 98%) 0%,
+      hsl(var(--warm-cream) / 0.95) 100%
+    );
+    border: 1px solid hsl(var(--champagne-gold) / 0.35);
+    box-shadow: 
+      0 4px 16px hsl(var(--bronze) / 0.06),
+      inset 0 1px 0 hsl(var(--champagne-gold) / 0.25);
   }
   
   /* ═══════════════════════════════════════════════
      浮動動畫效果
   ═══════════════════════════════════════════════ */
-  .hover-float {
+  .hover-lift {
     @apply transition-all duration-300 ease-out;
   }
   
-  .hover-float:hover {
-    transform: translateY(-6px);
+  .hover-lift:hover {
+    transform: translateY(-4px);
     box-shadow: 
-      0 20px 40px hsl(var(--vibrant-blue) / 0.15),
-      0 8px 16px hsl(var(--foreground) / 0.06);
+      0 16px 32px hsl(var(--bronze) / 0.12),
+      0 6px 12px hsl(var(--foreground) / 0.04);
   }
   
   /* ═══════════════════════════════════════════════
-     色彩標籤
+     香檳金標籤
   ═══════════════════════════════════════════════ */
-  .color-tag {
+  .gold-tag {
     @apply px-4 py-1.5 text-sm font-bold rounded-full;
     background: linear-gradient(
       135deg,
-      hsl(var(--vibrant-cyan)) 0%,
-      hsl(var(--vibrant-blue)) 100%
+      hsl(var(--champagne-gold)) 0%,
+      hsl(var(--bronze)) 100%
     );
-    color: white;
+    color: hsl(20 25% 12%);
+    box-shadow: 0 2px 8px hsl(var(--champagne-gold) / 0.3);
   }
   
   /* ═══════════════════════════════════════════════
-     活力邊框
+     香檳金邊框
   ═══════════════════════════════════════════════ */
-  .gradient-border {
+  .gold-border {
     border: 2px solid transparent;
     background: 
       linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
-      linear-gradient(135deg, hsl(var(--vibrant-cyan)), hsl(var(--vibrant-purple)), hsl(var(--vibrant-orange))) border-box;
+      linear-gradient(135deg, hsl(var(--champagne-gold)), hsl(var(--bronze)), hsl(var(--champagne-gold))) border-box;
+  }
+  
+  /* ═══════════════════════════════════════════════
+     玻璃金屬效果
+  ═══════════════════════════════════════════════ */
+  .glass-gold {
+    @apply backdrop-blur-md rounded-xl;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--champagne-gold) / 0.15) 0%,
+      hsl(var(--bronze) / 0.1) 100%
+    );
+    border: 1px solid hsl(var(--champagne-gold) / 0.3);
+    box-shadow: 
+      inset 0 1px 0 hsl(var(--champagne-gold) / 0.2),
+      0 4px 16px hsl(var(--bronze) / 0.1);
   }
 }
 
 @layer utilities {
-  /* 彈跳動畫 */
-  @keyframes bounce-in {
-    0% {
-      opacity: 0;
-      transform: scale(0.3);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-    70% {
-      transform: scale(0.95);
-    }
-    100% {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  .animate-bounce-in {
-    animation: bounce-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-  
   /* 淡入上浮動畫 */
   @keyframes fade-up {
     from {
@@ -310,35 +341,33 @@
     animation: fade-up 0.4s ease-out;
   }
   
-  /* 脈動發光 */
-  @keyframes pulse-glow {
+  /* 金光閃爍 */
+  @keyframes gold-shimmer {
     0%, 100% {
-      box-shadow: 0 0 20px hsl(var(--vibrant-orange) / 0.4);
+      opacity: 0.6;
     }
     50% {
-      box-shadow: 0 0 40px hsl(var(--vibrant-orange) / 0.7);
+      opacity: 1;
     }
   }
   
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
+  .animate-gold-shimmer {
+    animation: gold-shimmer 2s ease-in-out infinite;
   }
   
-  /* 彩虹流動 */
-  @keyframes rainbow-flow {
-    0% {
-      background-position: 0% 50%;
+  /* 優雅縮放 */
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
     }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
   
-  .animate-rainbow {
-    background-size: 200% 200%;
-    animation: rainbow-flow 3s ease infinite;
+  .animate-scale-in {
+    animation: scale-in 0.3s ease-out;
   }
 }

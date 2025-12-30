@@ -20,9 +20,10 @@ interface SubcategoryColumnProps {
   subcategory: Subcategory;
   services: Service[];
   onReorderServices: (services: Service[]) => void;
+  columnIndex?: number;
 }
 
-export function SubcategoryColumn({ subcategory, services, onReorderServices }: SubcategoryColumnProps) {
+export function SubcategoryColumn({ subcategory, services, onReorderServices, columnIndex = 0 }: SubcategoryColumnProps) {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -56,12 +57,20 @@ export function SubcategoryColumn({ subcategory, services, onReorderServices }: 
 
   if (sortedServices.length === 0) return null;
 
+  // 子分類欄位也做跳色
+  const columnVariants = [
+    'bg-warm-cream/60',
+    'bg-warm-beige/50',
+    'bg-warm-sand/40',
+  ];
+  const columnBg = columnVariants[columnIndex % columnVariants.length];
+
   return (
-    <div className="rounded-xl p-5 min-w-[300px] h-fit bg-muted/40 border border-border/50 backdrop-blur-sm hover-float">
-      {/* 子分類標題 - 繽紛漸層 */}
-      <h3 className="font-bold text-base mb-5 pb-3 border-b-2 border-gradient-to-r from-primary to-secondary tracking-wide 
-        bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-        ✦ {subcategory.name}
+    <div className={`rounded-xl p-5 min-w-[300px] h-fit backdrop-blur-sm hover-lift border border-border/50 ${columnBg}`}>
+      {/* 子分類標題 - 酒紅+香檳金漸層 */}
+      <h3 className="font-bold text-base mb-5 pb-3 border-b-2 border-secondary/40 tracking-wide text-primary flex items-center gap-2">
+        <span className="w-2 h-2 rounded-full bg-secondary" />
+        {subcategory.name}
       </h3>
       
       <DndContext

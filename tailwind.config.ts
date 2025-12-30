@@ -19,7 +19,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Roboto', 'Noto Sans TC', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        sans: ['Noto Sans TC', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],
         noto: ['Noto Sans TC', 'sans-serif'],
       },
@@ -78,21 +78,18 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // 繽紛活力配色
-        vibrant: {
-          orange: "hsl(var(--vibrant-orange))",
-          blue: "hsl(var(--vibrant-blue))",
-          cyan: "hsl(var(--vibrant-cyan))",
-          purple: "hsl(var(--vibrant-purple))",
-          yellow: "hsl(var(--vibrant-yellow))",
-          pink: "hsl(var(--vibrant-pink))",
-          green: "hsl(var(--vibrant-green))",
+        // 暖土配色
+        warm: {
+          cream: "hsl(var(--warm-cream))",
+          beige: "hsl(var(--warm-beige))",
+          sand: "hsl(var(--warm-sand))",
+          taupe: "hsl(var(--warm-taupe))",
         },
-        gradient: {
-          start: "hsl(var(--gradient-start))",
-          mid: "hsl(var(--gradient-mid))",
-          end: "hsl(var(--gradient-end))",
-        },
+        // 點綴色
+        champagne: "hsl(var(--champagne-gold))",
+        bronze: "hsl(var(--bronze))",
+        burgundy: "hsl(var(--burgundy))",
+        terracotta: "hsl(var(--terracotta))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -110,23 +107,18 @@ export default {
         },
         "float": {
           "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-8px)" },
+          "50%": { transform: "translateY(-6px)" },
         },
-        "shimmer": {
-          "0%": { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition: "200% 0" },
-        },
-        "wiggle": {
-          "0%, 100%": { transform: "rotate(-3deg)" },
-          "50%": { transform: "rotate(3deg)" },
+        "gold-pulse": {
+          "0%, 100%": { opacity: "0.7" },
+          "50%": { opacity: "1" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "float": "float 3s ease-in-out infinite",
-        "shimmer": "shimmer 2s linear infinite",
-        "wiggle": "wiggle 0.5s ease-in-out",
+        "gold-pulse": "gold-pulse 2s ease-in-out infinite",
       },
     },
   },

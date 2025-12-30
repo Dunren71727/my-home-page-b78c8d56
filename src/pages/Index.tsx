@@ -23,26 +23,25 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* 繽紛彩虹漸層背景 */}
-      <div className="fixed inset-0 rainbow-gradient" />
+      {/* 暖土漸層背景 */}
+      <div className="fixed inset-0 warm-gradient" />
       <div 
-        className="fixed inset-0 opacity-[0.02] pointer-events-none"
+        className="fixed inset-0 opacity-[0.03] pointer-events-none"
         style={{
-          backgroundImage: `radial-gradient(circle at 20% 30%, hsl(var(--vibrant-cyan) / 0.3), transparent 50%),
-                            radial-gradient(circle at 80% 70%, hsl(var(--vibrant-purple) / 0.3), transparent 50%),
-                            radial-gradient(circle at 50% 50%, hsl(var(--vibrant-orange) / 0.2), transparent 60%)`
+          backgroundImage: `radial-gradient(circle at 20% 30%, hsl(var(--champagne-gold) / 0.3), transparent 50%),
+                            radial-gradient(circle at 80% 70%, hsl(var(--bronze) / 0.2), transparent 50%)`
         }}
       />
 
       {/* Content */}
       <div className="relative z-10 min-h-screen">
-        {/* 活力漸層頂部導航 */}
-        <header className="gradient-nav text-white">
+        {/* 深炭灰頂部導航 */}
+        <header className="charcoal-nav text-white">
           <div className="max-w-[1600px] mx-auto px-4 md:px-6 py-4">
             <div className="flex justify-between items-center gap-4">
-              {/* 標題 - 大字體活力感 */}
+              {/* 標題 - 香檳金點綴 */}
               <div className="flex items-center gap-4">
-                <h1 className="text-xl md:text-2xl font-bold tracking-tight drop-shadow-sm">
+                <h1 className="text-xl md:text-2xl font-bold tracking-tight" style={{ color: 'hsl(43 52% 55%)' }}>
                   🏥 敦仁醫院 服務入口
                 </h1>
               </div>
@@ -51,8 +50,8 @@ const Index = () => {
               <div className="flex items-center gap-4 flex-1 justify-end">
                 <ServiceSearchBar services={config.services} />
                 
-                {/* 時鐘區塊 - 玻璃效果 */}
-                <div className="px-4 py-2 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 shadow-lg">
+                {/* 時鐘區塊 - 玻璃金屬效果 */}
+                <div className="glass-gold px-4 py-2">
                   <Clock />
                 </div>
                 
@@ -88,7 +87,7 @@ const Index = () => {
 
           {/* Footer */}
           <footer className="mt-12 text-center text-base text-muted-foreground">
-            <p className="tracking-wide">✨ 拖曳卡片可重新排序 | 按右上角齒輪自訂設定 ✨</p>
+            <p className="tracking-wide">✦ 拖曳卡片可重新排序 | 按右上角齒輪自訂設定 ✦</p>
           </footer>
         </div>
       </div>
