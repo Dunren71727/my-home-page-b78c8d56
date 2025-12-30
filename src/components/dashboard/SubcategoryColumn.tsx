@@ -66,7 +66,7 @@ export function SubcategoryColumn({ subcategory, services, onReorderServices, co
   const columnBg = columnVariants[columnIndex % columnVariants.length];
 
   return (
-    <div className={`rounded-xl p-5 min-w-[300px] h-fit backdrop-blur-sm hover-lift border border-bright-gold/15 ${columnBg}`}>
+    <div className={`rounded-xl p-5 min-w-[360px] w-full h-fit backdrop-blur-sm hover-lift border border-bright-gold/15 ${columnBg}`}>
       {/* 子分類標題 - 深藍+亮金 */}
       <h3 className="font-bold text-base mb-5 pb-3 border-b-2 border-secondary/50 tracking-wide text-primary flex items-center gap-2">
         <span className="w-2 h-2 rounded-full bg-secondary" />

@@ -59,7 +59,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
         </div>
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <h3 className="font-medium truncate">{service.name}</h3>
+            <h3 className="font-medium whitespace-nowrap">{service.name}</h3>
             <ExternalLink className="w-3 h-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
           </div>
           {service.description && (
