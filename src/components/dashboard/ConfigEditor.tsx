@@ -128,13 +128,12 @@ interface ConfigEditorProps {
 
 interface SortableSubcategoryItemProps {
   subcategory: Subcategory;
-  colorPresets: string[];
   categories: Category[];
   onUpdateSubcategory: (id: string, updates: Partial<Subcategory>) => void;
   onDeleteSubcategory: (id: string) => void;
 }
 
-function SortableSubcategoryItem({ subcategory, colorPresets, categories, onUpdateSubcategory, onDeleteSubcategory }: SortableSubcategoryItemProps) {
+function SortableSubcategoryItem({ subcategory, categories, onUpdateSubcategory, onDeleteSubcategory }: SortableSubcategoryItemProps) {
   const {
     attributes,
     listeners,
@@ -149,8 +148,6 @@ function SortableSubcategoryItem({ subcategory, colorPresets, categories, onUpda
     transition,
     opacity: isDragging ? 0.5 : 1,
   };
-
-  const categoryName = categories.find(c => c.id === subcategory.categoryId)?.name || '未分類';
 
   return (
     <div
@@ -169,14 +166,18 @@ function SortableSubcategoryItem({ subcategory, colorPresets, categories, onUpda
         className="w-4 h-4 rounded-full shrink-0" 
         style={{ backgroundColor: subcategory.color }}
       />
-      <div className="flex-1 min-w-0">
-        <span className="truncate text-sm block">{subcategory.name}</span>
+      <div className="flex-1 min-w-0 space-y-1">
+        <Input
+          value={subcategory.name}
+          onChange={(e) => onUpdateSubcategory(subcategory.id, { name: e.target.value })}
+          className="h-7 text-sm px-2"
+        />
         <Select
           value={subcategory.categoryId}
           onValueChange={(value) => onUpdateSubcategory(subcategory.id, { categoryId: value })}
         >
           <SelectTrigger className="h-6 text-xs text-muted-foreground border-none p-0 bg-transparent shadow-none hover:bg-muted/50">
-            <SelectValue placeholder={categoryName} />
+            <SelectValue />
           </SelectTrigger>
           <SelectContent>
             {categories.map(cat => (
@@ -184,18 +185,6 @@ function SortableSubcategoryItem({ subcategory, colorPresets, categories, onUpda
             ))}
           </SelectContent>
         </Select>
-      </div>
-      <div className="flex gap-1">
-        {colorPresets.map((color) => (
-          <button
-            key={color}
-            onClick={() => onUpdateSubcategory(subcategory.id, { color })}
-            className={`w-5 h-5 rounded border transition-all ${
-              subcategory.color === color ? 'border-foreground' : 'border-transparent hover:border-muted-foreground'
-            }`}
-            style={{ backgroundColor: color }}
-          />
-        ))}
       </div>
       <Button
         variant="ghost"
@@ -520,7 +509,6 @@ export function ConfigEditor({
                       <SortableSubcategoryItem
                         key={sub.id}
                         subcategory={sub}
-                        colorPresets={colorPresets}
                         categories={config.categories}
                         onUpdateSubcategory={onUpdateSubcategory}
                         onDeleteSubcategory={onDeleteSubcategory}
