@@ -24,19 +24,22 @@ export function ServiceTabs({ categories, subcategories, services, onReorderServ
   }
 
   return (
-    <div className="bg-white/80 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl border border-orange-100">
+    <div className="matte-card rounded-lg overflow-hidden">
       <Tabs defaultValue={sortedCategories[0]?.id} className="w-full">
-        <div className="border-b border-orange-100 bg-gradient-to-r from-orange-50 to-amber-50">
+        {/* Tab header with brushed metal effect */}
+        <div className="border-b border-border brushed-metal">
           <TabsList className="w-full justify-start h-auto p-0 bg-transparent rounded-none">
             {sortedCategories.map((category) => (
               <TabsTrigger
                 key={category.id}
                 value={category.id}
-                className="relative px-6 py-4 rounded-none border-b-3 border-transparent data-[state=active]:border-current data-[state=active]:bg-white/50 transition-all font-semibold"
+                className="relative px-6 py-3.5 rounded-none border-b-2 border-transparent 
+                  data-[state=active]:bg-card/80 data-[state=active]:border-current 
+                  transition-all font-medium text-sm tracking-wide"
                 style={{ 
                   color: category.color,
-                  borderBottomWidth: '3px',
-                } as React.CSSProperties}
+                  borderBottomWidth: '2px',
+                }}
               >
                 {category.name}
               </TabsTrigger>
@@ -48,7 +51,7 @@ export function ServiceTabs({ categories, subcategories, services, onReorderServ
           <TabsContent 
             key={category.id} 
             value={category.id}
-            className="mt-0 focus-visible:outline-none bg-gradient-to-b from-white/50 to-transparent"
+            className="mt-0 focus-visible:outline-none bg-card"
           >
             <CategoryTabContent
               category={category}

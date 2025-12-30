@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Roboto', 'Noto Sans TC', 'Helvetica Neue', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -57,6 +60,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        stone: {
+          warm: "hsl(var(--stone-warm))",
+        },
+        bronze: "hsl(var(--bronze))",
+        slate: "hsl(var(--slate))",
+        sage: "hsl(var(--sage))",
+        charcoal: "hsl(var(--charcoal))",
       },
       borderRadius: {
         lg: "var(--radius)",
