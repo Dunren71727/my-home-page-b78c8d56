@@ -192,6 +192,13 @@ export function useDashboardConfig() {
     }));
   };
 
+  const reorderSubcategories = (subcategories: Subcategory[]) => {
+    setConfig(prev => ({
+      ...prev,
+      subcategories,
+    }));
+  };
+
   const updateSettings = (updates: Partial<DashboardConfig>) => {
     setConfig(prev => ({ ...prev, ...updates }));
   };
@@ -209,6 +216,7 @@ export function useDashboardConfig() {
     addSubcategory,
     updateSubcategory,
     deleteSubcategory,
+    reorderSubcategories,
     addCategory,
     updateCategory,
     deleteCategory,
