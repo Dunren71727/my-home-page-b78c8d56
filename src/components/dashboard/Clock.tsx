@@ -27,10 +27,10 @@ export function Clock() {
   };
 
   return (
-    <div className="flex items-center gap-3 text-base font-bold tracking-wide" style={{ color: 'hsl(43 52% 55%)' }}>
-      <span className="drop-shadow-sm">📅 {formatDate(time)}</span>
-      <span className="opacity-60">|</span>
-      <span className="tabular-nums drop-shadow-sm">⏰ {formatTime(time)}</span>
+    <div className="flex items-center gap-3 text-base font-bold tracking-wide" style={{ color: 'hsl(43 70% 75%)' }}>
+      <span>📅 {formatDate(time)}</span>
+      <span className="opacity-50">|</span>
+      <span className="tabular-nums">⏰ {formatTime(time)}</span>
     </div>
   );
 }

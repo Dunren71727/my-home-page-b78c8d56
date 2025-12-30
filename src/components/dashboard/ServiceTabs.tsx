@@ -26,8 +26,8 @@ export function ServiceTabs({ categories, subcategories, services, onReorderServ
   return (
     <div className="glass-card overflow-hidden animate-fade-up">
       <Tabs defaultValue={sortedCategories[0]?.id} className="w-full">
-        {/* Tab header - 暖色調標籤 */}
-        <div className="border-b border-secondary/30 bg-gradient-to-r from-warm-cream/50 via-warm-beige/40 to-warm-cream/50">
+        {/* Tab header - 明亮暖色標籤 */}
+        <div className="border-b border-champagne/25 bg-gradient-to-r from-white/60 via-warm-cream/50 to-white/60">
           <TabsList className="w-full justify-start h-auto p-1.5 bg-transparent rounded-none gap-2">
             {sortedCategories.map((category, index) => (
               <TabsTrigger
