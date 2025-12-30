@@ -6,39 +6,39 @@
 
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 270 70% 65%;
-    --primary-foreground: 222 47% 6%;
-    --secondary: 217 33% 17%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 190 90% 50%;
-    --accent-foreground: 222 47% 6%;
+    --background: 45 100% 98%;
+    --foreground: 25 80% 25%;
+    --card: 0 0% 100%;
+    --card-foreground: 25 80% 25%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 80% 25%;
+    --primary: 25 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 145 60% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 45 30% 90%;
+    --muted-foreground: 25 30% 45%;
+    --accent: 200 90% 50%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
-    --ring: 270 70% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 35 40% 85%;
+    --input: 35 40% 85%;
+    --ring: 25 95% 53%;
     --radius: 0.75rem;
-    --chart-1: 270 70% 65%;
-    --chart-2: 190 90% 50%;
+    --chart-1: 25 95% 53%;
+    --chart-2: 145 60% 45%;
     --chart-3: 340 75% 55%;
-    --chart-4: 43 96% 56%;
-    --chart-5: 160 60% 45%;
-    --sidebar-background: 222 47% 6%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 270 70% 65%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 217 33% 17%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217 33% 20%;
-    --sidebar-ring: 270 70% 65%;
+    --chart-4: 200 90% 50%;
+    --chart-5: 280 70% 55%;
+    --sidebar-background: 45 100% 98%;
+    --sidebar-foreground: 25 80% 25%;
+    --sidebar-primary: 25 95% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 50% 92%;
+    --sidebar-accent-foreground: 25 80% 25%;
+    --sidebar-border: 35 40% 85%;
+    --sidebar-ring: 25 95% 53%;
   }
 }
 
@@ -54,7 +54,7 @@
 
 @layer components {
   .glass-card {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-xl;
+    @apply bg-white/90 backdrop-blur-xl border border-primary/10 shadow-lg;
   }
 
   .hover-lift {
@@ -62,7 +62,7 @@
   }
 
   .hover-lift:hover {
-    @apply -translate-y-1 shadow-2xl shadow-primary/10;
+    @apply -translate-y-1 shadow-2xl shadow-primary/20;
   }
 }
 

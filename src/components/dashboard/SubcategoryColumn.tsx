@@ -49,7 +49,6 @@ export function SubcategoryColumn({ subcategory, services, onReorderServices }: 
       const [removed] = newOrder.splice(oldIndex, 1);
       newOrder.splice(newIndex, 0, removed);
 
-      // Update order values
       const updatedServices = newOrder.map((s, index) => ({ ...s, order: index }));
       onReorderServices(updatedServices);
     }
@@ -59,13 +58,13 @@ export function SubcategoryColumn({ subcategory, services, onReorderServices }: 
 
   return (
     <div 
-      className="rounded-xl p-4 min-w-[280px] h-fit"
+      className="rounded-xl p-4 min-w-[280px] h-fit shadow-md"
       style={{ 
-        backgroundColor: `color-mix(in srgb, ${subcategory.color} 8%, hsl(var(--card)))`,
-        border: `1px solid color-mix(in srgb, ${subcategory.color} 15%, transparent)`
+        backgroundColor: `color-mix(in srgb, ${subcategory.color} 8%, white)`,
+        border: `2px solid color-mix(in srgb, ${subcategory.color} 25%, transparent)`
       }}
     >
-      <h3 className="font-semibold text-base mb-4" style={{ color: subcategory.color }}>
+      <h3 className="font-bold text-base mb-4" style={{ color: subcategory.color }}>
         {subcategory.name}
       </h3>
       
