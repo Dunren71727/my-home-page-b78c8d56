@@ -34,6 +34,8 @@ export interface WeatherData {
   icon: string;
 }
 
+export type ThemeType = 'default' | 'cartoon' | 'warm' | 'aqua-gold';
+
 export interface DashboardConfig {
   services: Service[];
   subcategories: Subcategory[];
@@ -42,4 +44,5 @@ export interface DashboardConfig {
   customSearchUrl?: string;
   showWeather: boolean;
   weatherLocation?: string;
+  theme?: ThemeType;
 }

@@ -41,7 +41,7 @@ import {
   TabsTrigger,
 } from '@/components/ui/tabs';
 import { Switch } from '@/components/ui/switch';
-import { Service, Category, Subcategory, DashboardConfig } from '@/types/dashboard';
+import { Service, Category, Subcategory, DashboardConfig, ThemeType } from '@/types/dashboard';
 import { useToast } from '@/hooks/use-toast';
 
 interface SortableCategoryItemProps {
@@ -582,7 +582,40 @@ export function ConfigEditor({
           {/* Settings Tab */}
           <TabsContent value="settings" className="space-y-4 mt-4">
             <div className="space-y-4">
-              <Button variant="destructive" onClick={onReset} className="w-full">
+              <div>
+                <Label>主題配色</Label>
+                <div className="grid grid-cols-2 gap-3 mt-3">
+                  {[
+                    { id: 'default', name: '深藍金', colors: ['hsl(215, 65%, 38%)', 'hsl(45, 85%, 55%)'] },
+                    { id: 'cartoon', name: '卡通繽紛', colors: ['hsl(280, 75%, 55%)', 'hsl(340, 80%, 60%)', 'hsl(45, 95%, 60%)'] },
+                    { id: 'warm', name: '暖陽', colors: ['hsl(25, 85%, 50%)', 'hsl(45, 90%, 55%)', 'hsl(15, 80%, 55%)'] },
+                    { id: 'aqua-gold', name: '水金', colors: ['hsl(185, 70%, 40%)', 'hsl(48, 90%, 55%)'] },
+                  ].map((theme) => (
+                    <button
+                      key={theme.id}
+                      onClick={() => onUpdateSettings({ theme: theme.id as ThemeType })}
+                      className={`p-3 rounded-lg border-2 transition-all ${
+                        (config.theme || 'default') === theme.id
+                          ? 'border-primary ring-2 ring-primary/30'
+                          : 'border-border hover:border-primary/50'
+                      }`}
+                    >
+                      <div className="flex gap-1 mb-2 justify-center">
+                        {theme.colors.map((color, idx) => (
+                          <div
+                            key={idx}
+                            className="w-6 h-6 rounded-full"
+                            style={{ backgroundColor: color }}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-sm font-medium">{theme.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <Button variant="destructive" onClick={onReset} className="w-full mt-4">
                 <RotateCcw className="w-4 h-4 mr-2" />
                 重置為預設值
               </Button>
